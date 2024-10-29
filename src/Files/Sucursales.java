@@ -1,22 +1,37 @@
 package Files;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alan Basilio
  */
 public class Sucursales
 {
-    public String nombre;
-    public String gerente;
-    public String direccion;
-    public int torres;
+    private String nombre;
+    private String gerente;
+    private String direccion;
+    private List<Torres> torres;
+    
+    // Contraseña de la base de datos
+    String bdpass = "100%Freestyle";
 
     public Sucursales()
     {
-        
+        this.torres = new ArrayList<>();  // Inicializamos la lista
     }
 
-    public Sucursales(String nombre, String gerente, String direccion, int torres)
+    public Sucursales(String nombre, String gerente, String direccion, List<Torres> torres)
     {
         this.nombre = nombre;
         this.gerente = gerente;
@@ -54,15 +69,124 @@ public class Sucursales
         this.direccion = direccion;
     }
 
-    public int getTorres()
+    public List<Torres> getTorres()
     {
         return torres;
     }
 
-    public void setTorres(int torres)
+    public void setTorres(List<Torres> torres)
     {
         this.torres = torres;
     }
+
+    public void addTorre(Torres torre)
+    {
+        this.torres.add(torre);
+    }
     
-    
+    // Método para registrar una nueva sucursal
+    public void altaSucursal(JTextField nombreField, JTextField gerenteField, JTextField direccionField) {
+        nombre = nombreField.getText();
+        gerente = gerenteField.getText();
+        direccion = direccionField.getText();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+            String sql = "INSERT INTO sucursales (nombre, gerente, direccion) VALUES (?, ?, ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, nombre);
+                stmt.setString(2, gerente);
+                stmt.setString(3, direccion);
+
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Sucursal registrada exitosamente");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + ex.getMessage());
+        }
+    }
+
+    // Método para buscar una sucursal por nombre
+    public int buscarSucursal(JTextField nombreField) {
+        nombre = nombreField.getText();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+            String sql = "SELECT * FROM sucursales WHERE nombre = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, nombre);
+                ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    return 1;  // Sucursal encontrada
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+        return 0;  // Sucursal no encontrada
+    }
+
+    // Método para listar todas las sucursales en una tabla
+    public void consultaGeneralSucursales(JTable tablaSucursales) {
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaSucursales.getModel();
+        modeloTabla.setRowCount(0);  // Limpiar la tabla
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+            String sql = "SELECT * FROM sucursales";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    modeloTabla.addRow(new Object[]{
+                        rs.getString("nombre"),
+                        rs.getString("gerente"),
+                        rs.getString("direccion")
+                    });
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    // Método para actualizar una sucursal
+    public void modificarSucursal(JTextField nombreField, JTextField gerenteField, JTextField direccionField) {
+        nombre = nombreField.getText();
+        gerente = gerenteField.getText();
+        direccion = direccionField.getText();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+            String sql = "UPDATE sucursales SET gerente = ?, direccion = ? WHERE nombre = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, gerente);
+                stmt.setString(2, direccion);
+                stmt.setString(3, nombre);
+
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Sucursal actualizada exitosamente");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + ex.getMessage());
+        }
+    }
+
+    // Método para eliminar una sucursal por nombre
+    public void eliminarSucursal(JTextField nombreField) {
+        nombre = nombreField.getText();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+            String sql = "DELETE FROM sucursales WHERE nombre = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, nombre);
+
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Sucursal eliminada exitosamente");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectar con la base de datos: " + ex.getMessage());
+        }
+    }
 }
