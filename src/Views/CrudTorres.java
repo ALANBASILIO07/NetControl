@@ -8,13 +8,13 @@ package Views;
  *
  * @author Alan Basilio
  */
-public class Print extends javax.swing.JFrame
+public class CrudTorres extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form Print
+     * Creates new form CrudTorres
      */
-    public Print()
+    public CrudTorres()
     {
         initComponents();
     }
@@ -74,16 +74,16 @@ public class Print extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudTorres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudTorres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudTorres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudTorres.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -92,7 +92,7 @@ public class Print extends javax.swing.JFrame
         {
             public void run()
             {
-                new Print().setVisible(true);
+                new CrudTorres().setVisible(true);
             }
         });
     }

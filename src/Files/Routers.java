@@ -73,7 +73,7 @@ public class Routers
         modelo = modeloField.getText();
         ID = Integer.parseInt(idField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "INSERT INTO routers (IPCliente, Titular, modelo, ID) VALUES (?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, IPCliente);
@@ -95,7 +95,7 @@ public class Routers
     public int buscarRouter(JTextField idField) {
         ID = Integer.parseInt(idField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM routers WHERE ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, ID);
@@ -115,7 +115,7 @@ public class Routers
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaRouters.getModel();
         modeloTabla.setRowCount(0);  // Limpiar la tabla
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM routers";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 ResultSet rs = stmt.executeQuery();
@@ -140,7 +140,7 @@ public class Routers
         modelo = modeloField.getText();
         ID = Integer.parseInt(idField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "UPDATE routers SET IPCliente = ?, Titular = ?, modelo = ? WHERE ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, IPCliente);
@@ -162,7 +162,7 @@ public class Routers
     public void eliminarRouter(JTextField idField) {
         ID = Integer.parseInt(idField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "DELETE FROM routers WHERE ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, ID);

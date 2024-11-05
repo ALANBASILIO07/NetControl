@@ -8,13 +8,13 @@ package Views;
  *
  * @author Alan Basilio
  */
-public class Print extends javax.swing.JFrame
+public class CrudRouters extends javax.swing.JFrame
 {
 
     /**
-     * Creates new form Print
+     * Creates new form CrudPagos
      */
-    public Print()
+    public CrudRouters()
     {
         initComponents();
     }
@@ -74,17 +74,18 @@ public class Print extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudRouters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudRouters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudRouters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Print.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrudRouters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -92,7 +93,7 @@ public class Print extends javax.swing.JFrame
         {
             public void run()
             {
-                new Print().setVisible(true);
+                new CrudRouters().setVisible(true);
             }
         });
     }

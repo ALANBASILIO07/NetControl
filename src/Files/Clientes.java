@@ -136,7 +136,7 @@ public class Clientes
         torre = torreField.getText();
         ID = Integer.parseInt(IDField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "INSERT INTO clientes (nombre, IP, vigencia, domicilio, status, succursal, torre, ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, nombre);
@@ -162,7 +162,7 @@ public class Clientes
     public int buscarCliente(JTextField IDField) {
         ID = Integer.parseInt(IDField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM clientes WHERE ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, ID);
@@ -182,7 +182,7 @@ public class Clientes
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaClientes.getModel();
         modeloTabla.setRowCount(0);  // Limpiar la tabla
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM clientes";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 ResultSet rs = stmt.executeQuery();
@@ -215,7 +215,7 @@ public class Clientes
         torre = torreField.getText();
         ID = Integer.parseInt(IDField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "UPDATE clientes SET nombre = ?, IP = ?, vigencia = ?, domicilio = ?, status = ?, succursal = ?, torre = ? WHERE ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, nombre);
@@ -241,7 +241,7 @@ public class Clientes
     public void eliminarCliente(JTextField IDField) {
         ID = Integer.parseInt(IDField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "DELETE FROM clientes WHERE ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, ID);

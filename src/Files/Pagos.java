@@ -110,7 +110,7 @@ public class Pagos
         tipo = tipoField.getText();
         cliente = clienteField.getText();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "INSERT INTO pagos (fecha, nocontrol, importe, mesaplicado, tipo, cliente) VALUES (?, ?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, fecha);
@@ -134,7 +134,7 @@ public class Pagos
     public int buscarPago(JTextField nocontrolField) {
         nocontrol = Integer.parseInt(nocontrolField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM pagos WHERE nocontrol = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, nocontrol);
@@ -154,7 +154,7 @@ public class Pagos
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaPagos.getModel();
         modeloTabla.setRowCount(0);  // Limpiar la tabla
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM pagos";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 ResultSet rs = stmt.executeQuery();
@@ -183,7 +183,7 @@ public class Pagos
         tipo = tipoField.getText();
         cliente = clienteField.getText();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "UPDATE pagos SET fecha = ?, importe = ?, mesaplicado = ?, tipo = ?, cliente = ? WHERE nocontrol = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, fecha);
@@ -207,7 +207,7 @@ public class Pagos
     public void eliminarPago(JTextField nocontrolField) {
         nocontrol = Integer.parseInt(nocontrolField.getText());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "DELETE FROM pagos WHERE nocontrol = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, nocontrol);

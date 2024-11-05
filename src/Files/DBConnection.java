@@ -14,7 +14,7 @@ public class DBConnection
     private static String DRIVER = "com.mysql.cj.jdbc.Driver";  // Clase del nuevo driver
     private static String USUARIO = "root";
     private static String PASSWORD = "100%Freestyle";
-    private static String URL = "jdbc:mysql://localhost:3306/netcontrol?useSSL=false&serverTimezone=UTC";
+    private static String URL = "jdbc:mysql://localhost:3307/netcontrol?useSSL=false&serverTimezone=UTC";
 
     static
     {

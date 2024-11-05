@@ -116,7 +116,7 @@ public class Antenas
         titular = titularField.getText();
         nocontrol = nocontrolField.getText();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "INSERT INTO antenas (categoria, frecuencia, modelo, titular, nocontrol) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, categoria);
@@ -139,7 +139,7 @@ public class Antenas
     public int buscarAntena(JTextField nocontrolField) {
         nocontrol = nocontrolField.getText();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM antenas WHERE nocontrol = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, nocontrol);
@@ -159,7 +159,7 @@ public class Antenas
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaAntenas.getModel();
         modeloTabla.setRowCount(0);  // Limpiar la tabla
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "SELECT * FROM antenas";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 ResultSet rs = stmt.executeQuery();
@@ -186,7 +186,7 @@ public class Antenas
         titular = titularField.getText();
         nocontrol = nocontrolField.getText();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "UPDATE antenas SET categoria = ?, frecuencia = ?, modelo = ?, titular = ? WHERE nocontrol = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, categoria);
@@ -209,7 +209,7 @@ public class Antenas
     public void eliminarAntena(JTextField nocontrolField) {
         nocontrol = nocontrolField.getText();
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass)) {
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/concesionario", "root", bdpass)) {
             String sql = "DELETE FROM antenas WHERE nocontrol = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, nocontrol);

@@ -4,16 +4,21 @@
  */
 package Views;
 
+import Files.Sucursales;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Basilio
  */
-public class VtnPrincipal extends javax.swing.JFrame {
+public class VtnPrincipal extends javax.swing.JFrame
+{
 
     /**
      * Creates new form Login
      */
-    public VtnPrincipal() {
+    public VtnPrincipal()
+    {
         initComponents();
     }
 
@@ -50,7 +55,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Container = new javax.swing.JTabbedPane();
         PanelServicios = new javax.swing.JPanel();
         Estatus = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -63,23 +68,30 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         PanelSucursales = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaSucursales = new javax.swing.JTable();
         jLabel27 = new javax.swing.JLabel();
+        jButton22 = new javax.swing.JButton();
         PanelTorres = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
+        jButton19 = new javax.swing.JButton();
+        jButton20 = new javax.swing.JButton();
+        jButton21 = new javax.swing.JButton();
         PanelAntenas = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
+        jButton18 = new javax.swing.JButton();
         PanelClientes = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
         jLabel30 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
         PanelSoporte = new javax.swing.JPanel();
         Pago1 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
@@ -107,6 +119,13 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jTable6 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Main.setBackground(new java.awt.Color(255, 255, 255));
@@ -135,29 +154,85 @@ public class VtnPrincipal extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("SERVICIOS");
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel11MouseClicked(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("CLIENTES");
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel12MouseClicked(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("ANTENAS");
+        jLabel13.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel13MouseClicked(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel14.setText("CONFIGURACIÓN");
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel14MouseClicked(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("SOPORTE");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel15MouseClicked(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel16.setText("TORRES");
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel16MouseClicked(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setText("SUCURSALES");
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel17MouseClicked(evt);
+            }
+        });
 
         jLabel18.setText("LOGO");
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("SALIR");
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel19MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout MainLayout = new javax.swing.GroupLayout(Main);
         Main.setLayout(MainLayout);
@@ -381,12 +456,12 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel22.setText("Servicios");
         PanelServicios.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 0, 139, 41));
 
-        jTabbedPane1.addTab("tab1", PanelServicios);
+        Container.addTab("tab1", PanelServicios);
 
         PanelSucursales.setBackground(new java.awt.Color(255, 255, 255));
         PanelSucursales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaSucursales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
                 {null, null, null, null},
@@ -399,7 +474,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
                 "Nombre", "Gerente", "Dirección", "Torres Dependientes"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaSucursales);
 
         PanelSucursales.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 98, 799, -1));
 
@@ -407,7 +482,20 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel27.setText("Sucursales");
         PanelSucursales.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jTabbedPane1.addTab("tab2", PanelSucursales);
+        jButton22.setBackground(new java.awt.Color(0, 102, 204));
+        jButton22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton22.setForeground(new java.awt.Color(255, 255, 255));
+        jButton22.setText("Administrar");
+        jButton22.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton22ActionPerformed(evt);
+            }
+        });
+        PanelSucursales.add(jButton22, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
+
+        Container.addTab("tab2", PanelSucursales);
 
         PanelTorres.setBackground(new java.awt.Color(255, 255, 255));
         PanelTorres.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -433,7 +521,25 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel28.setText("Torres");
         PanelTorres.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jTabbedPane1.addTab("tab3", PanelTorres);
+        jButton19.setBackground(new java.awt.Color(204, 0, 51));
+        jButton19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton19.setForeground(new java.awt.Color(255, 255, 255));
+        jButton19.setText("Eliminar");
+        PanelTorres.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
+
+        jButton20.setBackground(new java.awt.Color(0, 102, 204));
+        jButton20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton20.setForeground(new java.awt.Color(255, 255, 255));
+        jButton20.setText("Editar");
+        PanelTorres.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 200, -1));
+
+        jButton21.setBackground(new java.awt.Color(0, 102, 204));
+        jButton21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton21.setForeground(new java.awt.Color(255, 255, 255));
+        jButton21.setText("Agregar");
+        PanelTorres.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
+
+        Container.addTab("tab3", PanelTorres);
 
         PanelAntenas.setBackground(new java.awt.Color(255, 255, 255));
         PanelAntenas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -459,7 +565,25 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel29.setText("Antenas");
         PanelAntenas.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jTabbedPane1.addTab("tab4", PanelAntenas);
+        jButton16.setBackground(new java.awt.Color(204, 0, 51));
+        jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton16.setForeground(new java.awt.Color(255, 255, 255));
+        jButton16.setText("Eliminar");
+        PanelAntenas.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
+
+        jButton17.setBackground(new java.awt.Color(0, 102, 204));
+        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton17.setForeground(new java.awt.Color(255, 255, 255));
+        jButton17.setText("Editar");
+        PanelAntenas.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 200, -1));
+
+        jButton18.setBackground(new java.awt.Color(0, 102, 204));
+        jButton18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton18.setForeground(new java.awt.Color(255, 255, 255));
+        jButton18.setText("Agregar");
+        PanelAntenas.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
+
+        Container.addTab("tab4", PanelAntenas);
 
         PanelClientes.setBackground(new java.awt.Color(255, 255, 255));
         PanelClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -485,32 +609,25 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel30.setText("Clientes");
         PanelClientes.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Eliminar Cliente");
-        PanelClientes.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 60, 180, -1));
+        jButton13.setBackground(new java.awt.Color(204, 0, 51));
+        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("Eliminar");
+        PanelClientes.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Agregar Cliente");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        PanelClientes.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 180, -1));
+        jButton14.setBackground(new java.awt.Color(0, 102, 204));
+        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton14.setForeground(new java.awt.Color(255, 255, 255));
+        jButton14.setText("Editar");
+        PanelClientes.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 200, -1));
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 204));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Editar Cliente");
-        PanelClientes.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, 180, -1));
+        jButton15.setBackground(new java.awt.Color(0, 102, 204));
+        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(255, 255, 255));
+        jButton15.setText("Agregar");
+        PanelClientes.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
 
-        jTabbedPane1.addTab("tab5", PanelClientes);
+        Container.addTab("tab5", PanelClientes);
 
         PanelSoporte.setBackground(new java.awt.Color(255, 255, 255));
         PanelSoporte.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -628,7 +745,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel35.setText("Soporte");
         PanelSoporte.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jTabbedPane1.addTab("tab6", PanelSoporte);
+        Container.addTab("tab6", PanelSoporte);
 
         PanelConfig.setBackground(new java.awt.Color(255, 255, 255));
         PanelConfig.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -637,7 +754,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
         jLabel36.setText("Configuración");
         PanelConfig.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jTabbedPane1.addTab("tab7", PanelConfig);
+        Container.addTab("tab7", PanelConfig);
 
         PanelInicio.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -671,7 +788,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
                 .addContainerGap(201, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab8", PanelInicio);
+        Container.addTab("tab8", PanelInicio);
 
         PanelClienteSelect.setBackground(new java.awt.Color(255, 255, 255));
         PanelClienteSelect.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -732,51 +849,114 @@ public class VtnPrincipal extends javax.swing.JFrame {
 
         PanelClienteSelect.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 800, 70));
 
-        jTabbedPane1.addTab("tab9", PanelClienteSelect);
+        Container.addTab("tab9", PanelClienteSelect);
 
-        Conteiner.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 68, 890, 630));
+        Conteiner.add(Container, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 68, 890, 630));
 
         getContentPane().add(Conteiner, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 900, 700));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
-    {//GEN-HEADEREND:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel17MouseClicked
+    {//GEN-HEADEREND:event_jLabel17MouseClicked
+        Container.setSelectedComponent(PanelSucursales);
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void jButton22ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton22ActionPerformed
+    {//GEN-HEADEREND:event_jButton22ActionPerformed
+        CrudSucursales CS = new CrudSucursales();
+        CS.setVisible(true);
+    }//GEN-LAST:event_jButton22ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Sucursales s = new Sucursales();
+        s.consultaGeneralSucursales(tablaSucursales);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel11MouseClicked
+    {//GEN-HEADEREND:event_jLabel11MouseClicked
+        Container.setSelectedComponent(PanelServicios);
+    }//GEN-LAST:event_jLabel11MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel16MouseClicked
+    {//GEN-HEADEREND:event_jLabel16MouseClicked
+        Container.setSelectedComponent(PanelTorres);
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel13MouseClicked
+    {//GEN-HEADEREND:event_jLabel13MouseClicked
+        Container.setSelectedComponent(PanelAntenas);
+    }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel12MouseClicked
+    {//GEN-HEADEREND:event_jLabel12MouseClicked
+        Container.setSelectedComponent(PanelClientes);
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel15MouseClicked
+    {//GEN-HEADEREND:event_jLabel15MouseClicked
+        Container.setSelectedComponent(PanelSoporte);
+    }//GEN-LAST:event_jLabel15MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel14MouseClicked
+    {//GEN-HEADEREND:event_jLabel14MouseClicked
+        Container.setSelectedComponent(PanelConfig);
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel19MouseClicked
+    {//GEN-HEADEREND:event_jLabel19MouseClicked
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas salir del sistema?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION)
+        {
+            JOptionPane.showMessageDialog(this, "Gracias por usar el sistema. ¡Hasta luego!", "Despedida", JOptionPane.INFORMATION_MESSAGE);
+            dispose(); // Cerrar la ventana
+        }
+    }//GEN-LAST:event_jLabel19MouseClicked
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[])
+    {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try
+        {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            {
+                if ("Nimbus".equals(info.getName()))
+                {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex)
+        {
             java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex)
+        {
             java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex)
+        {
             java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex)
+        {
             java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
                 new VtnPrincipal().setVisible(true);
             }
         });
@@ -785,6 +965,7 @@ public class VtnPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Consumo;
     private javax.swing.JPanel Consumo1;
+    private javax.swing.JTabbedPane Container;
     private javax.swing.JPanel Conteiner;
     private javax.swing.JPanel Estatus;
     private javax.swing.JPanel Estatus1;
@@ -803,9 +984,16 @@ public class VtnPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel PanelSucursales;
     private javax.swing.JPanel PanelTorres;
     private javax.swing.JPanel ScrollBar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JButton jButton18;
+    private javax.swing.JButton jButton19;
+    private javax.swing.JButton jButton20;
+    private javax.swing.JButton jButton21;
+    private javax.swing.JButton jButton22;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -854,12 +1042,11 @@ public class VtnPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JTable tablaSucursales;
     // End of variables declaration//GEN-END:variables
 }
