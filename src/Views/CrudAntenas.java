@@ -184,6 +184,14 @@ public class CrudAntenas extends javax.swing.JFrame
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
 
         jPanel2.add(comboTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 160, -1));
+
+        nocontrolAntena.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                nocontrolAntenaKeyTyped(evt);
+            }
+        });
         jPanel2.add(nocontrolAntena, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 160, -1));
 
         jLabel13.setText("No Control");
@@ -302,6 +310,14 @@ public class CrudAntenas extends javax.swing.JFrame
 
         jLabel6.setText("No Control");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
+
+        modifNocontrol.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifNocontrolKeyTyped(evt);
+            }
+        });
         jPanel3.add(modifNocontrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 160, -1));
 
         jTabbedPane1.addTab("Modificar Antena", jPanel3);
@@ -402,7 +418,7 @@ public class CrudAntenas extends javax.swing.JFrame
 
     private void modifFrecuenciaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifFrecuenciaKeyTyped
     {//GEN-HEADEREND:event_modifFrecuenciaKeyTyped
-        Validaciones.validaAlfabeticos(evt, 23, modifFrecuencia.getText());
+        Validaciones.validaEntero(evt, 23, modifFrecuencia.getText());
     }//GEN-LAST:event_modifFrecuenciaKeyTyped
 
     private void comboModifTorreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_comboModifTorreKeyTyped
@@ -537,6 +553,16 @@ public class CrudAntenas extends javax.swing.JFrame
         a.agregaComboAntena(comboEliminaAntena);
         a.agregaComboAntena(comboModifAntenas);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void nocontrolAntenaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nocontrolAntenaKeyTyped
+    {//GEN-HEADEREND:event_nocontrolAntenaKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modeloAntena.getText());
+    }//GEN-LAST:event_nocontrolAntenaKeyTyped
+
+    private void modifNocontrolKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifNocontrolKeyTyped
+    {//GEN-HEADEREND:event_modifNocontrolKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modeloAntena.getText());
+    }//GEN-LAST:event_modifNocontrolKeyTyped
 
     /**
      * @param args the command line arguments

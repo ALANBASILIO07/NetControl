@@ -9,18 +9,28 @@ import Files.Clientes;
 import Files.Fecha;
 import Files.Sucursales;
 import Files.Torres;
+import java.awt.Desktop;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import javax.swing.*;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JOptionPane;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 /**
  *
  * @author Alan Basilio
  */
+
 public class VtnPrincipal extends javax.swing.JFrame
 {
 
@@ -80,7 +90,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                 // Actualizar el índice de la imagen
                 indiceImagen = (indiceImagen + 1) % imagenes.size();
             }
-        }, 0, 10000);  // Cambia cada 10 segundos
+        }, 0, 5000);  // Cambia cada 10 segundos
     }
 
     /**
@@ -153,13 +163,13 @@ public class VtnPrincipal extends javax.swing.JFrame
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaClientes = new javax.swing.JTable();
         PanelSoporte = new javax.swing.JPanel();
-        Pago1 = new javax.swing.JPanel();
+        manualUsuario = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
-        Imprimir1 = new javax.swing.JPanel();
+        Documentacion = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
-        Consumo1 = new javax.swing.JPanel();
+        GitHub = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
-        Estatus1 = new javax.swing.JPanel();
+        manualTecnico = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         PanelConfig = new javax.swing.JPanel();
@@ -715,7 +725,7 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel22.setText("Servicios");
-        PanelServicios.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(47, 0, 139, 41));
+        PanelServicios.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 139, 41));
 
         Container.addTab("tab1", PanelServicios);
 
@@ -741,7 +751,7 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel27.setText("Sucursales");
-        PanelSucursales.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
+        PanelSucursales.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 148, -1));
 
         jButton22.setBackground(new java.awt.Color(0, 102, 204));
         jButton22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -780,7 +790,7 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel28.setText("Torres");
-        PanelTorres.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
+        PanelTorres.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 148, -1));
 
         jButton19.setBackground(new java.awt.Color(0, 102, 204));
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -819,7 +829,7 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel29.setText("Antenas");
-        PanelAntenas.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
+        PanelAntenas.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 148, -1));
 
         jButton16.setBackground(new java.awt.Color(0, 102, 204));
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -841,7 +851,7 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         jLabel30.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel30.setText("Clientes");
-        PanelClientes.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
+        PanelClientes.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 148, -1));
 
         jButton13.setBackground(new java.awt.Color(0, 102, 204));
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -878,118 +888,174 @@ public class VtnPrincipal extends javax.swing.JFrame
         PanelSoporte.setBackground(new java.awt.Color(255, 255, 255));
         PanelSoporte.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Pago1.setBackground(new java.awt.Color(0, 102, 204));
-        Pago1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        manualUsuario.setBackground(new java.awt.Color(0, 102, 204));
+        manualUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        manualUsuario.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                manualUsuarioMouseClicked(evt);
+            }
+        });
 
         jLabel31.setBackground(new java.awt.Color(255, 255, 255));
         jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("MANUAL DE USUARIO");
+        jLabel31.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel31MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout Pago1Layout = new javax.swing.GroupLayout(Pago1);
-        Pago1.setLayout(Pago1Layout);
-        Pago1Layout.setHorizontalGroup(
-            Pago1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pago1Layout.createSequentialGroup()
+        javax.swing.GroupLayout manualUsuarioLayout = new javax.swing.GroupLayout(manualUsuario);
+        manualUsuario.setLayout(manualUsuarioLayout);
+        manualUsuarioLayout.setHorizontalGroup(
+            manualUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manualUsuarioLayout.createSequentialGroup()
                 .addContainerGap(282, Short.MAX_VALUE)
                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(274, 274, 274))
         );
-        Pago1Layout.setVerticalGroup(
-            Pago1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Pago1Layout.createSequentialGroup()
+        manualUsuarioLayout.setVerticalGroup(
+            manualUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manualUsuarioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
-        PanelSoporte.add(Pago1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 720, 60));
+        PanelSoporte.add(manualUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 720, 60));
 
-        Imprimir1.setBackground(new java.awt.Color(0, 102, 204));
-        Imprimir1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        Documentacion.setBackground(new java.awt.Color(0, 102, 204));
+        Documentacion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        Documentacion.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                DocumentacionMouseClicked(evt);
+            }
+        });
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("DOCUMENTACIÓN DEL SOFTWARE");
+        jLabel32.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel32MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout Imprimir1Layout = new javax.swing.GroupLayout(Imprimir1);
-        Imprimir1.setLayout(Imprimir1Layout);
-        Imprimir1Layout.setHorizontalGroup(
-            Imprimir1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Imprimir1Layout.createSequentialGroup()
+        javax.swing.GroupLayout DocumentacionLayout = new javax.swing.GroupLayout(Documentacion);
+        Documentacion.setLayout(DocumentacionLayout);
+        DocumentacionLayout.setHorizontalGroup(
+            DocumentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DocumentacionLayout.createSequentialGroup()
                 .addContainerGap(219, Short.MAX_VALUE)
                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(187, 187, 187))
         );
-        Imprimir1Layout.setVerticalGroup(
-            Imprimir1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Imprimir1Layout.createSequentialGroup()
+        DocumentacionLayout.setVerticalGroup(
+            DocumentacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DocumentacionLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
-        PanelSoporte.add(Imprimir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 720, 60));
+        PanelSoporte.add(Documentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 720, 60));
 
-        Consumo1.setBackground(new java.awt.Color(0, 102, 204));
-        Consumo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        GitHub.setBackground(new java.awt.Color(0, 102, 204));
+        GitHub.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        GitHub.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                GitHubMouseClicked(evt);
+            }
+        });
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText("GITHUB");
+        jLabel33.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel33MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout Consumo1Layout = new javax.swing.GroupLayout(Consumo1);
-        Consumo1.setLayout(Consumo1Layout);
-        Consumo1Layout.setHorizontalGroup(
-            Consumo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Consumo1Layout.createSequentialGroup()
+        javax.swing.GroupLayout GitHubLayout = new javax.swing.GroupLayout(GitHub);
+        GitHub.setLayout(GitHubLayout);
+        GitHubLayout.setHorizontalGroup(
+            GitHubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GitHubLayout.createSequentialGroup()
                 .addContainerGap(288, Short.MAX_VALUE)
                 .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(268, 268, 268))
         );
-        Consumo1Layout.setVerticalGroup(
-            Consumo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Consumo1Layout.createSequentialGroup()
+        GitHubLayout.setVerticalGroup(
+            GitHubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, GitHubLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
-        PanelSoporte.add(Consumo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 720, 60));
+        PanelSoporte.add(GitHub, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 720, 60));
 
-        Estatus1.setBackground(new java.awt.Color(0, 102, 204));
-        Estatus1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        manualTecnico.setBackground(new java.awt.Color(0, 102, 204));
+        manualTecnico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        manualTecnico.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                manualTecnicoMouseClicked(evt);
+            }
+        });
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel34.setText("MANUAL TÉCNICO");
+        jLabel34.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel34MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout Estatus1Layout = new javax.swing.GroupLayout(Estatus1);
-        Estatus1.setLayout(Estatus1Layout);
-        Estatus1Layout.setHorizontalGroup(
-            Estatus1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Estatus1Layout.createSequentialGroup()
+        javax.swing.GroupLayout manualTecnicoLayout = new javax.swing.GroupLayout(manualTecnico);
+        manualTecnico.setLayout(manualTecnicoLayout);
+        manualTecnicoLayout.setHorizontalGroup(
+            manualTecnicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manualTecnicoLayout.createSequentialGroup()
                 .addContainerGap(285, Short.MAX_VALUE)
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(271, 271, 271))
         );
-        Estatus1Layout.setVerticalGroup(
-            Estatus1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Estatus1Layout.createSequentialGroup()
+        manualTecnicoLayout.setVerticalGroup(
+            manualTecnicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, manualTecnicoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
 
-        PanelSoporte.add(Estatus1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 720, 60));
+        PanelSoporte.add(manualTecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 720, 60));
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel35.setText("Soporte");
-        PanelSoporte.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
+        PanelSoporte.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 148, -1));
 
         Container.addTab("tab6", PanelSoporte);
 
@@ -1219,7 +1285,7 @@ public class VtnPrincipal extends javax.swing.JFrame
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton16ActionPerformed
     {//GEN-HEADEREND:event_jButton16ActionPerformed
         CrudAntenas ca = new CrudAntenas();
-        ca.setVisible(true); 
+        ca.setVisible(true);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel25MouseClicked
@@ -1282,60 +1348,274 @@ public class VtnPrincipal extends javax.swing.JFrame
         c.setVisible(true);
     }//GEN-LAST:event_jLabel43MouseClicked
 
+    private void manualUsuarioMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_manualUsuarioMouseClicked
+    {//GEN-HEADEREND:event_manualUsuarioMouseClicked
+            // Obtener la ruta relativa al archivo dentro de los recursos del proyecto
+            String relativePath = "/Resources/Manual de Usuario.pdf";
+
+            try
+            {
+                // Cargar el archivo desde el directorio de recursos del proyecto
+                File pdfFile = new File(VtnPrincipal.class.getResource(relativePath).toURI());
+
+                if (pdfFile.exists())
+                {
+                    if (Desktop.isDesktopSupported())
+                    {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else
+                    {
+                        System.out.println("No se puede abrir el archivo. 'Desktop' no es compatible.");
+                    }
+                } else
+                {
+                    System.out.println("El archivo PDF no fue encontrado en la ruta especificada.");
+                }
+            } catch (IOException | URISyntaxException e)
+            {
+                System.out.println("Error al intentar abrir el archivo PDF: " + e.getMessage());
+            }
+    }//GEN-LAST:event_manualUsuarioMouseClicked
+
+    private void manualTecnicoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_manualTecnicoMouseClicked
+    {//GEN-HEADEREND:event_manualTecnicoMouseClicked
+        // Obtener la ruta relativa al archivo dentro de los recursos del proyecto
+            String relativePath = "/Resources/Menú Técnico de Instalación.pdf";
+
+            try
+            {
+                // Cargar el archivo desde el directorio de recursos del proyecto
+                File pdfFile = new File(VtnPrincipal.class.getResource(relativePath).toURI());
+
+                if (pdfFile.exists())
+                {
+                    if (Desktop.isDesktopSupported())
+                    {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else
+                    {
+                        System.out.println("No se puede abrir el archivo. 'Desktop' no es compatible.");
+                    }
+                } else
+                {
+                    System.out.println("El archivo PDF no fue encontrado en la ruta especificada.");
+                }
+            } catch (IOException | URISyntaxException e)
+            {
+                System.out.println("Error al intentar abrir el archivo PDF: " + e.getMessage());
+            }
+    }//GEN-LAST:event_manualTecnicoMouseClicked
+
+    private void DocumentacionMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_DocumentacionMouseClicked
+    {//GEN-HEADEREND:event_DocumentacionMouseClicked
+        // Obtener la ruta relativa al archivo dentro de los recursos del proyecto
+            String relativePath = "/Resources/Documentación.pdf";
+
+            try
+            {
+                // Cargar el archivo desde el directorio de recursos del proyecto
+                File pdfFile = new File(VtnPrincipal.class.getResource(relativePath).toURI());
+
+                if (pdfFile.exists())
+                {
+                    if (Desktop.isDesktopSupported())
+                    {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else
+                    {
+                        System.out.println("No se puede abrir el archivo. 'Desktop' no es compatible.");
+                    }
+                } else
+                {
+                    System.out.println("El archivo PDF no fue encontrado en la ruta especificada.");
+                }
+            } catch (IOException | URISyntaxException e)
+            {
+                System.out.println("Error al intentar abrir el archivo PDF: " + e.getMessage());
+            }
+    }//GEN-LAST:event_DocumentacionMouseClicked
+
+    private void jLabel32MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel32MouseClicked
+    {//GEN-HEADEREND:event_jLabel32MouseClicked
+        // Obtener la ruta relativa al archivo dentro de los recursos del proyecto
+            String relativePath = "/Resources/Documentación.pdf";
+
+            try
+            {
+                // Cargar el archivo desde el directorio de recursos del proyecto
+                File pdfFile = new File(VtnPrincipal.class.getResource(relativePath).toURI());
+
+                if (pdfFile.exists())
+                {
+                    if (Desktop.isDesktopSupported())
+                    {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else
+                    {
+                        System.out.println("No se puede abrir el archivo. 'Desktop' no es compatible.");
+                    }
+                } else
+                {
+                    System.out.println("El archivo PDF no fue encontrado en la ruta especificada.");
+                }
+            } catch (IOException | URISyntaxException e)
+            {
+                System.out.println("Error al intentar abrir el archivo PDF: " + e.getMessage());
+            }
+    }//GEN-LAST:event_jLabel32MouseClicked
+
+    private void jLabel34MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel34MouseClicked
+    {//GEN-HEADEREND:event_jLabel34MouseClicked
+        // Obtener la ruta relativa al archivo dentro de los recursos del proyecto
+            String relativePath = "/Resources/Menú Técnico de Instalación.pdf";
+
+            try
+            {
+                // Cargar el archivo desde el directorio de recursos del proyecto
+                File pdfFile = new File(VtnPrincipal.class.getResource(relativePath).toURI());
+
+                if (pdfFile.exists())
+                {
+                    if (Desktop.isDesktopSupported())
+                    {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else
+                    {
+                        System.out.println("No se puede abrir el archivo. 'Desktop' no es compatible.");
+                    }
+                } else
+                {
+                    System.out.println("El archivo PDF no fue encontrado en la ruta especificada.");
+                }
+            } catch (IOException | URISyntaxException e)
+            {
+                System.out.println("Error al intentar abrir el archivo PDF: " + e.getMessage());
+            }
+    }//GEN-LAST:event_jLabel34MouseClicked
+
+    private void jLabel31MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel31MouseClicked
+    {//GEN-HEADEREND:event_jLabel31MouseClicked
+        // Obtener la ruta relativa al archivo dentro de los recursos del proyecto
+            String relativePath = "/Resources/Manual de Usuario.pdf";
+
+            try
+            {
+                // Cargar el archivo desde el directorio de recursos del proyecto
+                File pdfFile = new File(VtnPrincipal.class.getResource(relativePath).toURI());
+
+                if (pdfFile.exists())
+                {
+                    if (Desktop.isDesktopSupported())
+                    {
+                        Desktop.getDesktop().open(pdfFile);
+                    } else
+                    {
+                        System.out.println("No se puede abrir el archivo. 'Desktop' no es compatible.");
+                    }
+                } else
+                {
+                    System.out.println("El archivo PDF no fue encontrado en la ruta especificada.");
+                }
+            } catch (IOException | URISyntaxException e)
+            {
+                System.out.println("Error al intentar abrir el archivo PDF: " + e.getMessage());
+            }
+    }//GEN-LAST:event_jLabel31MouseClicked
+
+    private void GitHubMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_GitHubMouseClicked
+    {//GEN-HEADEREND:event_GitHubMouseClicked
+        String url = "https://github.com/ALANBASILIO07/NetControl/tree/master";
+
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                // Verifica si la acción de navegar a una URI está soportada
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(new URI(url));
+                } else {
+                    System.out.println("La acción de navegar a un enlace no es compatible en este sistema.");
+                }
+            } else {
+                System.out.println("El entorno de escritorio no es compatible.");
+            }
+        } catch (IOException | URISyntaxException e) {
+            System.out.println("Error al intentar abrir el enlace: " + e.getMessage());
+        }
+    }//GEN-LAST:event_GitHubMouseClicked
+
+    private void jLabel33MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel33MouseClicked
+    {//GEN-HEADEREND:event_jLabel33MouseClicked
+        String url = "https://github.com/ALANBASILIO07/NetControl/tree/master";
+
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                // Verifica si la acción de navegar a una URI está soportada
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(new URI(url));
+                } else {
+                    System.out.println("La acción de navegar a un enlace no es compatible en este sistema.");
+                }
+            } else {
+                System.out.println("El entorno de escritorio no es compatible.");
+            }
+        } catch (IOException | URISyntaxException e) {
+            System.out.println("Error al intentar abrir el enlace: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jLabel33MouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[])
+{
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    try
     {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        try
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
         {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+            if ("Nimbus".equals(info.getName()))
             {
-                if ("Nimbus".equals(info.getName()))
-                {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex)
-        {
-            java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
-            java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
-            java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
-            java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
-                new VtnPrincipal().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex)
+    {
+        java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex)
+    {
+        java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex)
+    {
+        java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex)
+    {
+        java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable()
+    {
+        public void run()
+        {
+            new VtnPrincipal().setVisible(true);
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Consumo;
-    private javax.swing.JPanel Consumo1;
     private javax.swing.JTabbedPane Container;
     private javax.swing.JPanel Conteiner;
+    private javax.swing.JPanel Documentacion;
     private javax.swing.JPanel Estatus;
-    private javax.swing.JPanel Estatus1;
+    private javax.swing.JPanel GitHub;
     private javax.swing.JPanel Imprimir;
-    private javax.swing.JPanel Imprimir1;
     private javax.swing.JPanel Main;
     private javax.swing.JPanel Pago;
-    private javax.swing.JPanel Pago1;
     private javax.swing.JPanel PanelAntenas;
     private javax.swing.JPanel PanelClienteSelect;
     private javax.swing.JPanel PanelClientes;
@@ -1405,6 +1685,8 @@ public class VtnPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel label;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel lblPublicidad;
+    private javax.swing.JPanel manualTecnico;
+    private javax.swing.JPanel manualUsuario;
     private javax.swing.JTable tablaAntenas;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tablaSucursales;

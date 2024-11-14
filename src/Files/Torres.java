@@ -335,7 +335,7 @@ public class Torres
             }
         } else
         {
-            JOptionPane.showMessageDialog(null, "Seleccione una torre para consultar.");
+            //JOptionPane.showMessageDialog(null, "Seleccione una torre para consultar.");
         }
     }
 
