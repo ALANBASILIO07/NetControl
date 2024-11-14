@@ -4,6 +4,11 @@
  */
 package Views;
 
+import Files.Antenas;
+import Files.Torres;
+import cjb.ci.Validaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Basilio
@@ -30,27 +35,508 @@ public class CrudAntenas extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        frecuenciaAntena = new javax.swing.JTextField();
+        modeloAntena = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        comboCategoria = new javax.swing.JComboBox<>();
+        comboTorreAntena = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaTorreAntena = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        comboTitular = new javax.swing.JComboBox<>();
+        nocontrolAntena = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        modifModelo = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        modifFrecuencia = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaModifTorreAntena = new javax.swing.JTable();
+        comboModifTorre = new javax.swing.JComboBox<>();
+        comboModifCategoria = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        comboModifAntenas = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        comboModifTitular = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        modifNocontrol = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        comboEliminaAntena = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaElimnaAntena = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        jTabbedPane1.setBackground(new java.awt.Color(47, 113, 178));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(0, 102, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+
+        jLabel9.setText("Agregue los datos de la antena");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+
+        jLabel10.setText("Modelo");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+
+        jLabel11.setText("Torre a la que pertenece");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, -1, -1));
+
+        jLabel12.setText("Frecuencia");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        frecuenciaAntena.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                frecuenciaAntenaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(frecuenciaAntena, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 160, -1));
+
+        modeloAntena.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                modeloAntenaActionPerformed(evt);
+            }
+        });
+        modeloAntena.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modeloAntenaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(modeloAntena, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 160, -1));
+
+        jLabel1.setText("Categoría");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
+
+        comboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Particular", "Enrutamiento", "Interconexión" }));
+        jPanel2.add(comboCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 160, -1));
+
+        comboTorreAntena.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboTorreAntenaItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(comboTorreAntena, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 110, -1));
+
+        tablaTorreAntena.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "IP", "Frecuencia", "Modelo", "Categoría"
+            }
+        ));
+        jScrollPane3.setViewportView(tablaTorreAntena);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 560, 60));
+
+        jLabel4.setText("Titular");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
+
+        jPanel2.add(comboTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 160, -1));
+        jPanel2.add(nocontrolAntena, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, 160, -1));
+
+        jLabel13.setText("No Control");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, -1, -1));
+
+        jTabbedPane1.addTab("Agregar Antena", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton2.setBackground(new java.awt.Color(0, 102, 204));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("MODIFICAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
+
+        jLabel8.setText("Modifique los datos de los campos que desea actualizar");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+
+        jLabel14.setText("Modelo");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
+
+        modifModelo.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                modifModeloActionPerformed(evt);
+            }
+        });
+        modifModelo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifModeloKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 160, -1));
+
+        jLabel15.setText("Frecuencia");
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+
+        modifFrecuencia.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifFrecuenciaKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifFrecuencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 160, -1));
+
+        jLabel16.setText("Torre a la que pertenece");
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
+
+        tablaModifTorreAntena.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "IP", "Frecuencia", "Modelo", "Categoría"
+            }
+        ));
+        jScrollPane5.setViewportView(tablaModifTorreAntena);
+
+        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 560, 60));
+
+        comboModifTorre.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboModifTorreItemStateChanged(evt);
+            }
+        });
+        comboModifTorre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                comboModifTorreKeyTyped(evt);
+            }
+        });
+        jPanel3.add(comboModifTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 110, -1));
+
+        comboModifCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Particular", "Enrutamiento", "Interconexión" }));
+        jPanel3.add(comboModifCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 160, -1));
+
+        jLabel2.setText("Categoría");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, -1, -1));
+
+        jLabel3.setText("ANTENA:");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
+
+        comboModifAntenas.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboModifAntenasItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(comboModifAntenas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 180, -1));
+
+        jLabel5.setText("Titular");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
+
+        jPanel3.add(comboModifTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 160, -1));
+
+        jLabel6.setText("No Control");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, -1, -1));
+        jPanel3.add(modifNocontrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 160, -1));
+
+        jTabbedPane1.addTab("Modificar Antena", jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        comboEliminaAntena.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        comboEliminaAntena.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboEliminaAntenaItemStateChanged(evt);
+            }
+        });
+        comboEliminaAntena.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comboEliminaAntenaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(comboEliminaAntena, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 225, -1));
+
+        jButton3.setBackground(new java.awt.Color(0, 102, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 326, -1, -1));
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Selecione la antena que desea eliminar");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 65, 225, -1));
+
+        tablaElimnaAntena.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "IP", "Frecuencia", "Modelo", "Categoría"
+            }
+        ));
+        jScrollPane6.setViewportView(tablaElimnaAntena);
+
+        jPanel4.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 560, 60));
+
+        jTabbedPane1.addTab("Eliminar Antena", jPanel4);
+
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void modeloAntenaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modeloAntenaActionPerformed
+    {//GEN-HEADEREND:event_modeloAntenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modeloAntenaActionPerformed
+
+    private void modifModeloActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifModeloActionPerformed
+    {//GEN-HEADEREND:event_modifModeloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifModeloActionPerformed
+
+    private void comboEliminaAntenaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboEliminaAntenaActionPerformed
+    {//GEN-HEADEREND:event_comboEliminaAntenaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboEliminaAntenaActionPerformed
+
+    private void modeloAntenaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modeloAntenaKeyTyped
+    {//GEN-HEADEREND:event_modeloAntenaKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modeloAntena.getText());
+    }//GEN-LAST:event_modeloAntenaKeyTyped
+
+    private void frecuenciaAntenaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_frecuenciaAntenaKeyTyped
+    {//GEN-HEADEREND:event_frecuenciaAntenaKeyTyped
+        Validaciones.validaEntero(evt, 23, frecuenciaAntena.getText());
+    }//GEN-LAST:event_frecuenciaAntenaKeyTyped
+
+    private void modifModeloKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifModeloKeyTyped
+    {//GEN-HEADEREND:event_modifModeloKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modifModelo.getText());
+    }//GEN-LAST:event_modifModeloKeyTyped
+
+    private void modifFrecuenciaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifFrecuenciaKeyTyped
+    {//GEN-HEADEREND:event_modifFrecuenciaKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, modifFrecuencia.getText());
+    }//GEN-LAST:event_modifFrecuenciaKeyTyped
+
+    private void comboModifTorreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_comboModifTorreKeyTyped
+    {//GEN-HEADEREND:event_comboModifTorreKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboModifTorreKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        // Validar que los campos no estén vacíos antes de registrar la antena
+        if (comboCategoria.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la categoría", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboCategoria.requestFocus();
+        } else if (frecuenciaAntena.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la frecuencia", "Alerta", JOptionPane.WARNING_MESSAGE);
+            frecuenciaAntena.requestFocus();
+        } else if (modeloAntena.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el modelo", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modeloAntena.requestFocus();
+        } else if (comboTitular.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar el titular", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboTitular.requestFocus();
+        } else if (comboTorreAntena.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboTorreAntena.requestFocus();
+        } else if (nocontrolAntena.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el NoControl de la antena", "Alerta", JOptionPane.WARNING_MESSAGE);
+            nocontrolAntena.requestFocus();
+        } else
+        {
+            // Crear instancia de la clase Antenas y registrar la antena
+            Antenas a = new Antenas();
+            a.altaAntena(comboCategoria, frecuenciaAntena, modeloAntena, comboTitular, comboTorreAntena, nocontrolAntena);
+            a.agregaComboAntena(comboModifAntenas);
+            a.agregaComboAntena(comboEliminaAntena);
+
+            // Limpiar los campos después de registrar la antena
+            modeloAntena.setText("");
+            frecuenciaAntena.setText("");
+            nocontrolAntena.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        // Validar que los campos no estén vacíos antes de modificar la antena
+        if (comboModifCategoria.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la categoría", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboModifCategoria.requestFocus();
+        } else if (modifFrecuencia.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la frecuencia", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifFrecuencia.requestFocus();
+        } else if (modifModelo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el modelo", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifModelo.requestFocus();
+        } else if (comboModifTitular.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar el titular", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboModifTitular.requestFocus();
+        } else if (comboModifTorre.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboModifTorre.requestFocus();
+        } else if (modifNocontrol.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el NoControl de la antena", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifNocontrol.requestFocus();
+        } else
+        {
+            // Crear instancia de la clase Antenas y modificar la antena
+            Antenas a = new Antenas();
+            a.modificarAntena(comboModifCategoria, modifFrecuencia, modifModelo, comboModifTitular, comboModifTorre, modifNocontrol);
+            a.agregaComboAntena(comboModifAntenas);
+            a.agregaComboAntena(comboEliminaAntena);
+
+            // Limpiar los campos después de modificar la antena
+            modifModelo.setText("");
+            modifFrecuencia.setText("");
+            modifNocontrol.setText("");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Antenas a = new Antenas();
+        a.agregaComboAntena(comboModifAntenas);
+        a.agregaComboAntena(comboEliminaAntena);
+        Torres t = new Torres();
+        t.agregaComboTorre(comboTorreAntena);
+        t.agregaComboTorre(comboModifTorre);
+        a.agregaComboCombinado(comboTitular);
+        a.agregaComboCombinado(comboModifTitular);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void comboEliminaAntenaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboEliminaAntenaItemStateChanged
+    {//GEN-HEADEREND:event_comboEliminaAntenaItemStateChanged
+        Antenas a = new Antenas();
+        a.consultaAntenaEspecifica(tablaElimnaAntena, comboEliminaAntena);
+    }//GEN-LAST:event_comboEliminaAntenaItemStateChanged
+
+    private void comboModifAntenasItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboModifAntenasItemStateChanged
+    {//GEN-HEADEREND:event_comboModifAntenasItemStateChanged
+        Antenas a = new Antenas();
+        a.selectAntena(comboModifAntenas, comboModifCategoria, modifFrecuencia, modifModelo, comboModifTitular, comboModifTorre, modifNocontrol);
+    }//GEN-LAST:event_comboModifAntenasItemStateChanged
+
+    private void comboModifTorreItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboModifTorreItemStateChanged
+    {//GEN-HEADEREND:event_comboModifTorreItemStateChanged
+        Torres t = new Torres();
+        t.consultaTorreEspecifica(tablaModifTorreAntena, comboModifTorre);
+    }//GEN-LAST:event_comboModifTorreItemStateChanged
+
+    private void comboTorreAntenaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTorreAntenaItemStateChanged
+    {//GEN-HEADEREND:event_comboTorreAntenaItemStateChanged
+        Torres t = new Torres();
+        t.consultaTorreEspecifica(tablaTorreAntena, comboTorreAntena);
+    }//GEN-LAST:event_comboTorreAntenaItemStateChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
+    {//GEN-HEADEREND:event_jButton3ActionPerformed
+        Antenas a = new Antenas();
+        a.eliminarAntena(comboEliminaAntena);
+        a.agregaComboAntena(comboEliminaAntena);
+        a.agregaComboAntena(comboModifAntenas);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,6 +587,49 @@ public class CrudAntenas extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboCategoria;
+    private javax.swing.JComboBox<String> comboEliminaAntena;
+    private javax.swing.JComboBox<String> comboModifAntenas;
+    private javax.swing.JComboBox<String> comboModifCategoria;
+    private javax.swing.JComboBox<String> comboModifTitular;
+    private javax.swing.JComboBox<String> comboModifTorre;
+    private javax.swing.JComboBox<String> comboTitular;
+    private javax.swing.JComboBox<String> comboTorreAntena;
+    private javax.swing.JTextField frecuenciaAntena;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField modeloAntena;
+    private javax.swing.JTextField modifFrecuencia;
+    private javax.swing.JTextField modifModelo;
+    private javax.swing.JTextField modifNocontrol;
+    private javax.swing.JTextField nocontrolAntena;
+    private javax.swing.JTable tablaElimnaAntena;
+    private javax.swing.JTable tablaModifTorreAntena;
+    private javax.swing.JTable tablaTorreAntena;
     // End of variables declaration//GEN-END:variables
 }

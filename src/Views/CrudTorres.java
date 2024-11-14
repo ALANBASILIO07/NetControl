@@ -4,6 +4,12 @@
  */
 package Views;
 
+import Files.Clientes;
+import Files.Sucursales;
+import Files.Torres;
+import cjb.ci.Validaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Basilio
@@ -30,27 +36,454 @@ public class CrudTorres extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        zonaTorre = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        direccionTorre = new javax.swing.JTextField();
+        etiquetaTorre = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaTorreSucursal = new javax.swing.JTable();
+        comboSucursalTorre = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        modifEtiqueta = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        comboModifST = new javax.swing.JComboBox<>();
+        modifZona = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        modifDireccion = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaModifSucursal = new javax.swing.JTable();
+        comboModifTorre = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        nocontrol = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        comboEliminaTorre = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabalaEliminaTorre = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        jTabbedPane1.setBackground(new java.awt.Color(47, 113, 178));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setText("Agregue los datos de la torre");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
+
+        jLabel10.setText("Etiqueta");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
+
+        jLabel11.setText("Zona");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
+
+        zonaTorre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                zonaTorreKeyTyped(evt);
+            }
+        });
+        jPanel2.add(zonaTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 190, 210, -1));
+
+        jLabel12.setText("Dirección");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, -1, -1));
+
+        direccionTorre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                direccionTorreKeyTyped(evt);
+            }
+        });
+        jPanel2.add(direccionTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 210, 80));
+
+        etiquetaTorre.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                etiquetaTorreActionPerformed(evt);
+            }
+        });
+        etiquetaTorre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                etiquetaTorreKeyTyped(evt);
+            }
+        });
+        jPanel2.add(etiquetaTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 130, 210, -1));
+
+        jLabel1.setText("Sucursal a la que pertenece");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 102, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+
+        tablaTorreSucursal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String []
+            {
+                "Nombre", "Gerente", "Dirección"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaTorreSucursal);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 610, 50));
+
+        comboSucursalTorre.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboSucursalTorreItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(comboSucursalTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 240, 140, -1));
+
+        jTabbedPane1.addTab("Agregar Torre", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setText("Modifique los datos de los campos que desea actualizar");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
+
+        jLabel13.setText("Etiqueta");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+
+        modifEtiqueta.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                modifEtiquetaActionPerformed(evt);
+            }
+        });
+        modifEtiqueta.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifEtiquetaKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifEtiqueta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 210, -1));
+
+        jLabel14.setText("Zona");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+
+        jLabel2.setText("Sucursal a la que pertenece");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+
+        comboModifST.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboModifSTItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(comboModifST, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 140, -1));
+
+        modifZona.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifZonaKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 210, -1));
+
+        jLabel15.setText("Dirección");
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
+
+        modifDireccion.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifDireccionKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 150, 210, 80));
+
+        jLabel3.setText("Torre que se quiere modificar");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        jButton2.setBackground(new java.awt.Color(0, 102, 204));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("MODIFICAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
+
+        tablaModifSucursal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String []
+            {
+                "Nombre", "Gerente", "Dirección"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaModifSucursal);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 610, 50));
+
+        comboModifTorre.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboModifTorreItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(comboModifTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 130, -1));
+
+        jLabel4.setText("No Control");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
+
+        nocontrol.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        nocontrol.setText("0000");
+        jPanel3.add(nocontrol, new org.netbeans.lib.awtextra.AbsoluteConstraints(487, 90, 160, -1));
+
+        jTabbedPane1.addTab("Modificar Torre", jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        comboEliminaTorre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        comboEliminaTorre.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboEliminaTorreItemStateChanged(evt);
+            }
+        });
+        jPanel4.add(comboEliminaTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 225, -1));
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Selecione la torre que desea eliminar");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 65, 225, -1));
+
+        tabalaEliminaTorre.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String []
+            {
+                "No. Control", "Zona", "Dirección", "Etiqueta", "Sucursal"
+            }
+        ));
+        jScrollPane3.setViewportView(tabalaEliminaTorre);
+
+        jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 610, 50));
+
+        jButton3.setBackground(new java.awt.Color(0, 102, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("ELIMINAR");
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 326, -1, -1));
+
+        jTabbedPane1.addTab("Eliminar Torre", jPanel4);
+
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void etiquetaTorreActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_etiquetaTorreActionPerformed
+    {//GEN-HEADEREND:event_etiquetaTorreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_etiquetaTorreActionPerformed
+
+    private void modifEtiquetaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifEtiquetaActionPerformed
+    {//GEN-HEADEREND:event_modifEtiquetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifEtiquetaActionPerformed
+
+    private void etiquetaTorreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_etiquetaTorreKeyTyped
+    {//GEN-HEADEREND:event_etiquetaTorreKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, etiquetaTorre.getText());
+    }//GEN-LAST:event_etiquetaTorreKeyTyped
+
+    private void zonaTorreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_zonaTorreKeyTyped
+    {//GEN-HEADEREND:event_zonaTorreKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, zonaTorre.getText());
+    }//GEN-LAST:event_zonaTorreKeyTyped
+
+    private void direccionTorreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_direccionTorreKeyTyped
+    {//GEN-HEADEREND:event_direccionTorreKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, direccionTorre.getText());
+    }//GEN-LAST:event_direccionTorreKeyTyped
+
+    private void modifEtiquetaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifEtiquetaKeyTyped
+    {//GEN-HEADEREND:event_modifEtiquetaKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modifEtiqueta.getText());
+    }//GEN-LAST:event_modifEtiquetaKeyTyped
+
+    private void modifDireccionKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifDireccionKeyTyped
+    {//GEN-HEADEREND:event_modifDireccionKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modifDireccion.getText());
+    }//GEN-LAST:event_modifDireccionKeyTyped
+
+    private void modifZonaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifZonaKeyTyped
+    {//GEN-HEADEREND:event_modifZonaKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modifZona.getText());
+    }//GEN-LAST:event_modifZonaKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        if (comboSucursalTorre.getSelectedIndex() == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar una sucursal", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboSucursalTorre.requestFocus();
+        } else if (zonaTorre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la zona de la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            zonaTorre.requestFocus();
+        } else if (direccionTorre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la dirección de la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            direccionTorre.requestFocus();
+        } else if (etiquetaTorre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la etiqueta de la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            etiquetaTorre.requestFocus();
+        } else
+        {
+            // Crear instancia de la clase Torres y dar de alta la torre
+            Torres t = new Torres();
+            t.altaTorre(comboSucursalTorre, zonaTorre, direccionTorre, etiquetaTorre);
+            t.agregaComboTorre(comboModifST);
+            t.agregaComboTorre(comboEliminaTorre);
+
+            // Limpiar campos después de dar de alta la torre
+            etiquetaTorre.setText("");
+            zonaTorre.setText("");
+            direccionTorre.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Sucursales s = new Sucursales();
+        s.agregaCombo(comboModifST);
+        s.agregaCombo(comboSucursalTorre);
+        Torres t = new Torres();
+        t.agregaComboTorre(comboModifTorre);
+        t.agregaComboTorre(comboEliminaTorre);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void comboModifSTItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboModifSTItemStateChanged
+    {//GEN-HEADEREND:event_comboModifSTItemStateChanged
+        Sucursales s = new Sucursales();
+        s.consultaSucursalEspecifica(tablaModifSucursal, comboModifST);
+    }//GEN-LAST:event_comboModifSTItemStateChanged
+
+    private void comboSucursalTorreItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboSucursalTorreItemStateChanged
+    {//GEN-HEADEREND:event_comboSucursalTorreItemStateChanged
+        Sucursales s = new Sucursales();
+        s.consultaSucursalEspecifica(tablaTorreSucursal, comboSucursalTorre);
+    }//GEN-LAST:event_comboSucursalTorreItemStateChanged
+
+    private void comboModifTorreItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboModifTorreItemStateChanged
+    {//GEN-HEADEREND:event_comboModifTorreItemStateChanged
+        Torres t = new Torres();
+        t.selectTorre(comboModifTorre, comboModifST, nocontrol, modifEtiqueta, modifDireccion, modifZona);
+    }//GEN-LAST:event_comboModifTorreItemStateChanged
+
+    private void comboEliminaTorreItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboEliminaTorreItemStateChanged
+    {//GEN-HEADEREND:event_comboEliminaTorreItemStateChanged
+        Torres t = new Torres();
+        t.consultaTorreEspecifica(tabalaEliminaTorre, comboEliminaTorre);
+    }//GEN-LAST:event_comboEliminaTorreItemStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        if (comboModifST.getSelectedIndex() == -1)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar una sucursal", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboModifST.requestFocus();
+        } else if (modifZona.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la zona de la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifZona.requestFocus();
+        } else if (modifDireccion.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la dirección de la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifDireccion.requestFocus();
+        } else if (modifEtiqueta.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la etiqueta de la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifEtiqueta.requestFocus();
+        } else
+        {
+            // Crear instancia de la clase Torres y modificar la torre
+            Torres t = new Torres();
+            t.modificarTorre(modifZona, modifDireccion, modifEtiqueta, comboModifST);
+            t.agregaComboTorre(comboModifST);
+            t.agregaComboTorre(comboEliminaTorre);
+
+            // Limpiar campos después de modificar la torre
+            modifDireccion.setText("");
+            modifEtiqueta.setText("");
+            modifZona.setText("");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -98,6 +531,43 @@ public class CrudTorres extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboEliminaTorre;
+    private javax.swing.JComboBox<String> comboModifST;
+    private javax.swing.JComboBox<String> comboModifTorre;
+    private javax.swing.JComboBox<String> comboSucursalTorre;
+    private javax.swing.JTextField direccionTorre;
+    private javax.swing.JTextField etiquetaTorre;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField modifDireccion;
+    private javax.swing.JTextField modifEtiqueta;
+    private javax.swing.JTextField modifZona;
+    private javax.swing.JLabel nocontrol;
+    private javax.swing.JTable tabalaEliminaTorre;
+    private javax.swing.JTable tablaModifSucursal;
+    private javax.swing.JTable tablaTorreSucursal;
+    private javax.swing.JTextField zonaTorre;
     // End of variables declaration//GEN-END:variables
 }

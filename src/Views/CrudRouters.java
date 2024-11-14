@@ -4,6 +4,9 @@
  */
 package Views;
 
+import Files.Clientes;
+import cjb.ci.Validaciones;
+
 /**
  *
  * @author Alan Basilio
@@ -30,27 +33,221 @@ public class CrudRouters extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        modeloRouter = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        IPRouter = new javax.swing.JTextField();
+        comboTitular = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        modifIPRouter = new javax.swing.JTextField();
+        modifModelo = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        jTabbedPane1.setBackground(new java.awt.Color(47, 113, 178));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setText("Agregue los datos del router");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, -1, -1));
+
+        jLabel10.setText("Titular");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
+
+        jLabel11.setText("Modelo");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, -1, -1));
+
+        modeloRouter.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modeloRouterKeyTyped(evt);
+            }
+        });
+        jPanel2.add(modeloRouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 310, -1));
+
+        jLabel12.setText("IP Cliente");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
+
+        IPRouter.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                IPRouterKeyTyped(evt);
+            }
+        });
+        jPanel2.add(IPRouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 240, 310, -1));
+
+        jPanel2.add(comboTitular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 310, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 102, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, -1, -1));
+
+        jTabbedPane1.addTab("Agregar Router", jPanel2);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        modifIPRouter.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifIPRouterKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifIPRouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 310, -1));
+
+        modifModelo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifModeloKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 310, -1));
+
+        jLabel8.setText("Modifique los datos de los campos que desea actualizar");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+
+        jLabel13.setText("Titular");
+        jPanel3.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+
+        jLabel14.setText("Modelo");
+        jPanel3.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
+
+        jLabel15.setText("IP Cliente");
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
+
+        jLabel1.setText("Router que se quiere modificar");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+
+        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(382, 100, 190, -1));
+
+        jPanel3.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 310, -1));
+
+        jButton2.setBackground(new java.awt.Color(0, 102, 204));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("MODIFICAR");
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, -1, -1));
+
+        jTabbedPane1.addTab("Modificar Router", jPanel3);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 99, 225, -1));
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Selecione el cliente que desea eliminar");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 65, 225, -1));
+
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "ID", "Titular", "Modelo", "IP Cliente"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable4);
+
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 177, 668, 110));
+
+        jButton3.setBackground(new java.awt.Color(0, 102, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("ELIMINAR");
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 326, -1, -1));
+
+        jTabbedPane1.addTab("Eliminar Router", jPanel4);
+
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void modeloRouterKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modeloRouterKeyTyped
+    {//GEN-HEADEREND:event_modeloRouterKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modeloRouter.getText());
+    }//GEN-LAST:event_modeloRouterKeyTyped
+
+    private void IPRouterKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_IPRouterKeyTyped
+    {//GEN-HEADEREND:event_IPRouterKeyTyped
+        Validaciones.validaFlotantes(evt, 23, IPRouter.getText());
+    }//GEN-LAST:event_IPRouterKeyTyped
+
+    private void modifModeloKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifModeloKeyTyped
+    {//GEN-HEADEREND:event_modifModeloKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modifModelo.getText());
+    }//GEN-LAST:event_modifModeloKeyTyped
+
+    private void modifIPRouterKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifIPRouterKeyTyped
+    {//GEN-HEADEREND:event_modifIPRouterKeyTyped
+        Validaciones.validaFlotantes(evt, 23, modifIPRouter.getText());
+    }//GEN-LAST:event_modifIPRouterKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Clientes c = new Clientes();
+        c.agregaCombo(comboTitular);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -99,6 +296,33 @@ public class CrudRouters extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField IPRouter;
+    private javax.swing.JComboBox<String> comboTitular;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable4;
+    private javax.swing.JTextField modeloRouter;
+    private javax.swing.JTextField modifIPRouter;
+    private javax.swing.JTextField modifModelo;
     // End of variables declaration//GEN-END:variables
 }

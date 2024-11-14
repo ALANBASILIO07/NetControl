@@ -5,6 +5,7 @@
 package Views;
 
 import Files.Sucursales;
+import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,10 +40,10 @@ public class CrudSucursales extends javax.swing.JFrame
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        gerente = new javax.swing.JTextField();
+        gerenteSucursal = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        direccion = new javax.swing.JTextField();
-        nombre = new javax.swing.JTextField();
+        direccionSucursal = new javax.swing.JTextField();
+        nombreSucursal = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         nombreM = new javax.swing.JTextField();
@@ -74,7 +75,7 @@ public class CrudSucursales extends javax.swing.JFrame
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 102, 204));
+        jTabbedPane1.setBackground(new java.awt.Color(47, 113, 178));
         jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -87,7 +88,10 @@ public class CrudSucursales extends javax.swing.JFrame
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        guardarSucursal.setText("Guardar");
+        guardarSucursal.setBackground(new java.awt.Color(0, 102, 204));
+        guardarSucursal.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        guardarSucursal.setForeground(new java.awt.Color(255, 255, 255));
+        guardarSucursal.setText("GUARDAR");
         guardarSucursal.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -105,20 +109,43 @@ public class CrudSucursales extends javax.swing.JFrame
 
         jLabel11.setText("Gerente");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
-        jPanel2.add(gerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 310, -1));
+
+        gerenteSucursal.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                gerenteSucursalKeyTyped(evt);
+            }
+        });
+        jPanel2.add(gerenteSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 310, -1));
 
         jLabel12.setText("Dirección");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, -1, -1));
-        jPanel2.add(direccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 310, -1));
 
-        nombre.addActionListener(new java.awt.event.ActionListener()
+        direccionSucursal.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                direccionSucursalKeyTyped(evt);
+            }
+        });
+        jPanel2.add(direccionSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 310, -1));
+
+        nombreSucursal.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                nombreActionPerformed(evt);
+                nombreSucursalActionPerformed(evt);
             }
         });
-        jPanel2.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 310, -1));
+        nombreSucursal.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                nombreSucursalKeyTyped(evt);
+            }
+        });
+        jPanel2.add(nombreSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 310, -1));
 
         jTabbedPane1.addTab("Agregar Sucursal", jPanel2);
 
@@ -135,6 +162,13 @@ public class CrudSucursales extends javax.swing.JFrame
                 nombreMActionPerformed(evt);
             }
         });
+        nombreM.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                nombreMKeyTyped(evt);
+            }
+        });
         jPanel3.add(nombreM, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 310, -1));
 
         jLabel5.setText("Gerente");
@@ -143,7 +177,10 @@ public class CrudSucursales extends javax.swing.JFrame
         jLabel6.setText("Dirección");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, -1, -1));
 
-        jButton2.setText("Modificar");
+        jButton2.setBackground(new java.awt.Color(0, 102, 204));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("MODIFICAR");
         jButton2.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -152,7 +189,23 @@ public class CrudSucursales extends javax.swing.JFrame
             }
         });
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 370, -1, -1));
+
+        direccionM.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                direccionMKeyTyped(evt);
+            }
+        });
         jPanel3.add(direccionM, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 310, -1));
+
+        gerenteM.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                gerenteMKeyTyped(evt);
+            }
+        });
         jPanel3.add(gerenteM, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 310, -1));
 
         jLabel8.setText("Modifique los datos de los campos que desea actualizar");
@@ -174,6 +227,7 @@ public class CrudSucursales extends javax.swing.JFrame
         jTabbedPane1.addTab("Modificar Sucursal", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         comboElimina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         comboElimina.addItemListener(new java.awt.event.ItemListener()
@@ -183,8 +237,12 @@ public class CrudSucursales extends javax.swing.JFrame
                 comboEliminaItemStateChanged(evt);
             }
         });
+        jPanel4.add(comboElimina, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 129, 225, -1));
 
-        jButton3.setText("Eliminar");
+        jButton3.setBackground(new java.awt.Color(0, 102, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("ELIMINAR");
         jButton3.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -192,9 +250,11 @@ public class CrudSucursales extends javax.swing.JFrame
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(314, 342, -1, -1));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Selecione la sucursal que desea eliminar");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(183, 79, 351, -1));
 
         tablaElimina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
@@ -211,49 +271,16 @@ public class CrudSucursales extends javax.swing.JFrame
         ));
         jScrollPane1.setViewportView(tablaElimina);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(176, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(comboElimina, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(278, 278, 278))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(314, 314, 314)
-                        .addComponent(jButton3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(comboElimina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(jButton3)
-                .addGap(100, 100, 100))
-        );
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 183, 550, 110));
 
         jTabbedPane1.addTab("Eliminar Sucursal", jPanel4);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nombreMActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_nombreMActionPerformed
@@ -261,30 +288,36 @@ public class CrudSucursales extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_nombreMActionPerformed
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_nombreActionPerformed
-    {//GEN-HEADEREND:event_nombreActionPerformed
+    private void nombreSucursalActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_nombreSucursalActionPerformed
+    {//GEN-HEADEREND:event_nombreSucursalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
+    }//GEN-LAST:event_nombreSucursalActionPerformed
 
     private void guardarSucursalActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_guardarSucursalActionPerformed
     {//GEN-HEADEREND:event_guardarSucursalActionPerformed
-        if (nombre.getText().isEmpty())
+        if (nombreSucursal.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Nombre", "Alerta", JOptionPane.WARNING_MESSAGE);
-            nombre.requestFocus();
-        } else if (gerente.getText().isEmpty())
+            nombreSucursal.requestFocus();
+        } else if (gerenteSucursal.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Gerente", "Alerta", JOptionPane.WARNING_MESSAGE);
-            gerente.requestFocus();
-        } else if (direccion.getText().isEmpty())
+            gerenteSucursal.requestFocus();
+        } else if (direccionSucursal.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Dirección", "Alerta", JOptionPane.WARNING_MESSAGE);
-            direccion.requestFocus();
+            direccionSucursal.requestFocus();
         } else
         {
             Sucursales s = new Sucursales();
-            s.altaSucursal(nombre, gerente, direccion);
+            s.altaSucursal(nombreSucursal, gerenteSucursal, direccionSucursal);
+            s.agregaCombo(comboElimina);
+            s.agregaCombo(comboSucursal);
         }
+
+        nombreSucursal.setText("");
+        gerenteSucursal.setText("");
+        direccionSucursal.setText("");
     }//GEN-LAST:event_guardarSucursalActionPerformed
 
     private void comboSucursalItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboSucursalItemStateChanged
@@ -301,23 +334,34 @@ public class CrudSucursales extends javax.swing.JFrame
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-        if (comboSucursal.getSelectedIndex() == -1 || nombreM.getText().isEmpty() || gerenteM.getText().isEmpty() || direccionM.getText().isEmpty())
+        if (comboSucursal.getSelectedIndex() == -1)
         {
-            JOptionPane.showMessageDialog(this, "No se ha seleccionado alguna sucursal o faltan campos por llenar", "Alerta", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la sucursal", "Alerta", JOptionPane.WARNING_MESSAGE);
             comboSucursal.requestFocus();
+        } else if (nombreM.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el nombre de la sucursal", "Alerta", JOptionPane.WARNING_MESSAGE);
+            nombreM.requestFocus();
+        } else if (gerenteM.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el nombre del gerente", "Alerta", JOptionPane.WARNING_MESSAGE);
+            gerenteM.requestFocus();
+        } else if (direccionM.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la dirección de la sucursal", "Alerta", JOptionPane.WARNING_MESSAGE);
+            direccionM.requestFocus();
         } else
         {
+            // Crear instancia de la clase Sucursales y modificar la sucursal
             Sucursales s = new Sucursales();
-
-            // Llamar al método para modificar la sucursal
             s.modificarSucursal(nombreM, gerenteM, direccionM);
 
             // Limpiar campos después de modificar
-            nombre.setText("");
-            gerente.setText("");
-            direccion.setText("");
+            nombreM.setText("");
+            gerenteM.setText("");
+            direccionM.setText("");
 
-            // Reiniciar el JComboBox para que refleje los cambios
+            // Reiniciar el JComboBox para reflejar los cambios
             comboSucursal.setSelectedIndex(-1);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -334,7 +378,7 @@ public class CrudSucursales extends javax.swing.JFrame
         Sucursales s = new Sucursales();
         s.agregaCombo(comboElimina);
         s.agregaCombo(comboSucursal);
-        s.consultaGeneralSucursales(tablaElimina);
+        s.consultaGeneralSucursalesContador(tablaElimina);
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void comboEliminaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboEliminaItemStateChanged
@@ -342,6 +386,36 @@ public class CrudSucursales extends javax.swing.JFrame
         Sucursales s = new Sucursales();
         s.consultaSucursalEspecifica(tablaElimina, comboElimina);
     }//GEN-LAST:event_comboEliminaItemStateChanged
+
+    private void nombreSucursalKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreSucursalKeyTyped
+    {//GEN-HEADEREND:event_nombreSucursalKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, nombreSucursal.getText());
+    }//GEN-LAST:event_nombreSucursalKeyTyped
+
+    private void gerenteSucursalKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_gerenteSucursalKeyTyped
+    {//GEN-HEADEREND:event_gerenteSucursalKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, gerenteSucursal.getText());
+    }//GEN-LAST:event_gerenteSucursalKeyTyped
+
+    private void direccionSucursalKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_direccionSucursalKeyTyped
+    {//GEN-HEADEREND:event_direccionSucursalKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, direccionSucursal.getText());
+    }//GEN-LAST:event_direccionSucursalKeyTyped
+
+    private void nombreMKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreMKeyTyped
+    {//GEN-HEADEREND:event_nombreMKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, nombreM.getText());
+    }//GEN-LAST:event_nombreMKeyTyped
+
+    private void gerenteMKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_gerenteMKeyTyped
+    {//GEN-HEADEREND:event_gerenteMKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, gerenteM.getText());
+    }//GEN-LAST:event_gerenteMKeyTyped
+
+    private void direccionMKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_direccionMKeyTyped
+    {//GEN-HEADEREND:event_direccionMKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, direccionM.getText());
+    }//GEN-LAST:event_direccionMKeyTyped
 
     /**
      * @param args the command line arguments
@@ -392,10 +466,10 @@ public class CrudSucursales extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboElimina;
     private javax.swing.JComboBox<String> comboSucursal;
-    private javax.swing.JTextField direccion;
     private javax.swing.JTextField direccionM;
-    private javax.swing.JTextField gerente;
+    private javax.swing.JTextField direccionSucursal;
     private javax.swing.JTextField gerenteM;
+    private javax.swing.JTextField gerenteSucursal;
     private javax.swing.JButton guardarSucursal;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -415,8 +489,8 @@ public class CrudSucursales extends javax.swing.JFrame
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombreM;
+    private javax.swing.JTextField nombreSucursal;
     private javax.swing.JTable tablaElimina;
     // End of variables declaration//GEN-END:variables
 }

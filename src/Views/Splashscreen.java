@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Views;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,53 +26,136 @@ public class Splashscreen extends javax.swing.JFrame {
     {
 
         jPanel1 = new javax.swing.JPanel();
+        Background = new javax.swing.JPanel();
+        LogoCarga = new javax.swing.JPanel();
+        TextEmpresa = new javax.swing.JLabel();
+        LoadingLabel = new javax.swing.JLabel();
+        LoadingValue = new javax.swing.JLabel();
+        IconGreenStock = new javax.swing.JLabel();
+        Splash = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Background.setMinimumSize(new java.awt.Dimension(700, 380));
+        Background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        LogoCarga.setBackground(new java.awt.Color(255, 255, 255));
+
+        TextEmpresa.setFont(new java.awt.Font("Bahnschrift", 1, 24)); // NOI18N
+        TextEmpresa.setForeground(new java.awt.Color(47, 113, 178));
+        TextEmpresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TextEmpresa.setText("NETCONTROL");
+
+        LoadingLabel.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        LoadingLabel.setForeground(new java.awt.Color(47, 113, 178));
+        LoadingLabel.setText("Loading ...");
+
+        LoadingValue.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        LoadingValue.setForeground(new java.awt.Color(47, 113, 178));
+        LoadingValue.setText("0 %");
+
+        IconGreenStock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo Splash.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout LogoCargaLayout = new javax.swing.GroupLayout(LogoCarga);
+        LogoCarga.setLayout(LogoCargaLayout);
+        LogoCargaLayout.setHorizontalGroup(
+            LogoCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LogoCargaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LoadingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LoadingValue)
+                .addGap(17, 17, 17))
+            .addGroup(LogoCargaLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(LogoCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(IconGreenStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TextEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        LogoCargaLayout.setVerticalGroup(
+            LogoCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(LogoCargaLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(IconGreenStock, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(TextEmpresa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(LogoCargaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LoadingLabel)
+                    .addComponent(LoadingValue))
+                .addGap(44, 44, 44))
+        );
+
+        Background.add(LogoCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 400));
+
+        Splash.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/Splash.jpg"))); // NOI18N
+        Background.add(Splash, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 440, 400));
+
+        jPanel1.add(Background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 400));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+        Splashscreen sp = new Splashscreen();
+        sp.setVisible(true);
+        
+            try
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    Thread.sleep(70);
+                    sp.LoadingValue.setText(i + "%");
+                    
+                    if (i == 10)
+                    {
+                        sp.LoadingLabel.setText("Llamando los Módulos...");
+                    }
+                    if (i == 20)
+                    {
+                        sp.LoadingLabel.setText("Cargando Módulos...");
+                    }
+                    if (i == 50)
+                    {
+                        sp.LoadingLabel.setText("Conectando a la Base de Datos...");
+                    }
+                    if (i == 70)
+                    {
+                        sp.LoadingLabel.setText("Conección correcta...");
+                    }
+                    if (i == 80)
+                    {
+                        sp.LoadingLabel.setText("Iniciando Sistema...");
+                    }
                 }
+                new Login().setVisible(true);
+            } catch (Exception e)
+            {
+                JOptionPane.showMessageDialog(null, e);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Splashscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Splashscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Splashscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Splashscreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Splashscreen().setVisible(true);
-            }
-        });
+            sp.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Background;
+    private javax.swing.JLabel IconGreenStock;
+    private javax.swing.JLabel LoadingLabel;
+    private javax.swing.JLabel LoadingValue;
+    private javax.swing.JPanel LogoCarga;
+    private javax.swing.JLabel Splash;
+    private javax.swing.JLabel TextEmpresa;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

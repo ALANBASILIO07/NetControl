@@ -166,6 +166,37 @@ public class Sucursales
         }
     }
 
+    public void consultaGeneralSucursalesContador(JTable tablaSucursales)
+    {
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaSucursales.getModel();
+        modeloTabla.setRowCount(0);  // Limpiar la tabla
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/netcontrol", "root", bdpass))
+        {
+            String sql = "SELECT s.nombre, s.gerente, s.direccion, "
+                    + "IFNULL((SELECT COUNT(*) FROM torres t WHERE t.NombreSucursal = s.nombre), 0) AS torres_dependientes "
+                    + "FROM sucursales s";
+
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next())
+                {
+                    modeloTabla.addRow(new Object[]
+                    {
+                        rs.getString("nombre"),
+                        rs.getString("gerente"),
+                        rs.getString("direccion"),
+                        rs.getInt("torres_dependientes")  // Número de torres dependientes
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
     public void consultaSucursalEspecifica(JTable tablaSucursales, JComboBox<String> comboElimina)
     {
         DefaultTableModel modeloTabla = (DefaultTableModel) tablaSucursales.getModel();

@@ -4,6 +4,9 @@
  */
 package Views;
 
+import cjb.ci.Validaciones;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Alan Basilio
@@ -18,6 +21,16 @@ public class Password extends javax.swing.JFrame
     {
         initComponents();
     }
+    
+    // Contraseña de la base de datos
+    String adminpass = "100%Freestyle";
+    
+    // Método que recibe el JTextField de la contraseña y verifica si coincide con la contraseña de administrador
+    public boolean isAdminPasswordCorrect(JTextField passwordField)
+    {
+        String enteredPassword = passwordField.getText(); // Obtiene el texto ingresado en el JTextField
+        return enteredPassword.equals(adminpass); // Verifica si coincide con la contraseña de administrador
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,16 +44,25 @@ public class Password extends javax.swing.JFrame
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        passwordAdmin = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("INSERTE LA CONTRASEÑA DE ADMINISTRADOR");
+
+        passwordAdmin.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                passwordAdminKeyTyped(evt);
+            }
+        });
 
         jButton1.setText("Ingresar");
 
@@ -52,8 +74,8 @@ public class Password extends javax.swing.JFrame
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
-                .addContainerGap(25, Short.MAX_VALUE))
+                    .addComponent(passwordAdmin))
+                .addContainerGap(10, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -65,7 +87,7 @@ public class Password extends javax.swing.JFrame
                 .addGap(39, 39, 39)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(51, Short.MAX_VALUE))
@@ -74,7 +96,13 @@ public class Password extends javax.swing.JFrame
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 200));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void passwordAdminKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_passwordAdminKeyTyped
+    {//GEN-HEADEREND:event_passwordAdminKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, passwordAdmin.getText());
+    }//GEN-LAST:event_passwordAdminKeyTyped
 
     /**
      * @param args the command line arguments
@@ -125,6 +153,6 @@ public class Password extends javax.swing.JFrame
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField passwordAdmin;
     // End of variables declaration//GEN-END:variables
 }

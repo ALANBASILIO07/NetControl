@@ -4,6 +4,10 @@
  */
 package Views;
 
+import Files.Usuarios;
+import cjb.ci.Validaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Basilio
@@ -34,12 +38,12 @@ public class NewUser extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        registerUser = new javax.swing.JTextField();
+        registerPassword = new javax.swing.JTextField();
+        confirmPassword = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -55,18 +59,48 @@ public class NewUser extends javax.swing.JFrame
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 279, -1, -1));
 
         jButton1.setText("Registrarse");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener()
+        jButton1.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jTextField1ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 137, 200, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 204, 200, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 276, 200, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
+
+        registerUser.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                registerUserActionPerformed(evt);
+            }
+        });
+        registerUser.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                registerUserKeyTyped(evt);
+            }
+        });
+        jPanel1.add(registerUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 137, 200, -1));
+
+        registerPassword.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                registerPasswordKeyTyped(evt);
+            }
+        });
+        jPanel1.add(registerPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 204, 200, -1));
+
+        confirmPassword.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                confirmPasswordKeyTyped(evt);
+            }
+        });
+        jPanel1.add(confirmPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 276, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -76,12 +110,64 @@ public class NewUser extends javax.swing.JFrame
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField1ActionPerformed
-    {//GEN-HEADEREND:event_jTextField1ActionPerformed
+    private void registerUserActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_registerUserActionPerformed
+    {//GEN-HEADEREND:event_registerUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_registerUserActionPerformed
+
+    private void registerUserKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_registerUserKeyTyped
+    {//GEN-HEADEREND:event_registerUserKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, registerUser.getText());
+    }//GEN-LAST:event_registerUserKeyTyped
+
+    private void registerPasswordKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_registerPasswordKeyTyped
+    {//GEN-HEADEREND:event_registerPasswordKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, registerPassword.getText());
+    }//GEN-LAST:event_registerPasswordKeyTyped
+
+    private void confirmPasswordKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_confirmPasswordKeyTyped
+    {//GEN-HEADEREND:event_confirmPasswordKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, confirmPassword.getText());
+    }//GEN-LAST:event_confirmPasswordKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        // Validar que los campos no estén vacíos antes de registrar el usuario
+        if (registerUser.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Usuario", "Alerta", JOptionPane.WARNING_MESSAGE);
+            registerUser.requestFocus();
+        } else if (registerPassword.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Contraseña", "Alerta", JOptionPane.WARNING_MESSAGE);
+            registerPassword.requestFocus();
+        } else if (confirmPassword.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Confirmar Contraseña", "Alerta", JOptionPane.WARNING_MESSAGE);
+            confirmPassword.requestFocus();
+        } else if (!registerPassword.getText().equals(confirmPassword.getText()))
+        {
+            // Validar que las contraseñas coincidan
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden, por favor verifícalas", "Alerta", JOptionPane.WARNING_MESSAGE);
+            registerPassword.setText("");
+            confirmPassword.setText("");
+            registerPassword.requestFocus();
+        } else
+        {
+            // Crear instancia de la clase Usuarios y registrar el nuevo usuario
+            Usuarios u = new Usuarios();
+            u.altaUsuario(registerUser, registerPassword, confirmPassword);
+
+            // Limpiar los campos de texto después del registro
+            registerUser.setText("");
+            registerPassword.setText("");
+            confirmPassword.setText("");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,14 +215,14 @@ public class NewUser extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField confirmPassword;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField registerPassword;
+    private javax.swing.JTextField registerUser;
     // End of variables declaration//GEN-END:variables
 }

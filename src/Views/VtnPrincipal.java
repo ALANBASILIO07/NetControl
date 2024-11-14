@@ -4,7 +4,17 @@
  */
 package Views;
 
+import Files.Antenas;
+import Files.Clientes;
+import Files.Fecha;
 import Files.Sucursales;
+import Files.Torres;
+import java.awt.Image;
+import javax.swing.*;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,12 +24,63 @@ import javax.swing.JOptionPane;
 public class VtnPrincipal extends javax.swing.JFrame
 {
 
+    // Lista de imágenes (modifica las rutas según corresponda)
+    private static List<String> imagenes = Arrays.asList(
+            "/Resources/banner1.png", // Ruta de la primera imagen
+            "/Resources/banner2.png", // Ruta de la segunda imagen
+            "/Resources/banner3.png", // Ruta de la tercera imagen
+            "/Resources/banner4.png" // Ruta de la cuarta imagen
+    );
+
+    // Índice para cambiar las imágenes
+    private static int indiceImagen = 0;
+
     /**
      * Creates new form Login
      */
     public VtnPrincipal()
     {
         initComponents();
+        
+        Fecha f = new Fecha();
+        f.mostrarFechaEnCampo(labelFecha);
+        iniciarCambioDeImagen();  // Iniciar el cambio de imagen al crear el JFrame
+    }
+
+    // Método para iniciar el cambio de imágenes cada 10 segundos
+    private void iniciarCambioDeImagen()
+    {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                // Ruta de la imagen actual
+                String rutaImagen = imagenes.get(indiceImagen);
+                java.net.URL imgURL = getClass().getResource(rutaImagen);
+
+                if (imgURL != null)
+                {
+                    // Cargar la imagen y redimensionarla al tamaño del JLabel
+                    ImageIcon iconoOriginal = new ImageIcon(imgURL);
+                    Image imagenRedimensionada = iconoOriginal.getImage().getScaledInstance(
+                            lblPublicidad.getWidth(),
+                            lblPublicidad.getHeight(),
+                            Image.SCALE_SMOOTH
+                    );
+
+                    // Configurar la imagen redimensionada en el JLabel
+                    lblPublicidad.setIcon(new ImageIcon(imagenRedimensionada));
+                } else
+                {
+                    System.err.println("No se pudo encontrar la imagen en la ruta: " + rutaImagen);
+                }
+
+                // Actualizar el índice de la imagen
+                indiceImagen = (indiceImagen + 1) % imagenes.size();
+            }
+        }, 0, 10000);  // Cambia cada 10 segundos
     }
 
     /**
@@ -41,11 +102,9 @@ public class VtnPrincipal extends javax.swing.JFrame
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -53,18 +112,25 @@ public class VtnPrincipal extends javax.swing.JFrame
         jLabel19 = new javax.swing.JLabel();
         Conteiner = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        label = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         Container = new javax.swing.JTabbedPane();
+        PanelInicio = new javax.swing.JPanel();
+        ScrollBar = new javax.swing.JPanel();
+        lblPublicidad = new javax.swing.JLabel();
         PanelServicios = new javax.swing.JPanel();
         Estatus = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         Pago = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
         Consumo = new javax.swing.JPanel();
         jLabel26 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         Imprimir = new javax.swing.JPanel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         PanelSucursales = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -73,25 +139,19 @@ public class VtnPrincipal extends javax.swing.JFrame
         jButton22 = new javax.swing.JButton();
         PanelTorres = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaTorres = new javax.swing.JTable();
         jLabel28 = new javax.swing.JLabel();
         jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
-        jButton21 = new javax.swing.JButton();
         PanelAntenas = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tablaAntenas = new javax.swing.JTable();
         jLabel29 = new javax.swing.JLabel();
         jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
         PanelClientes = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
         jLabel30 = new javax.swing.JLabel();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tablaClientes = new javax.swing.JTable();
         PanelSoporte = new javax.swing.JPanel();
         Pago1 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
@@ -104,8 +164,6 @@ public class VtnPrincipal extends javax.swing.JFrame
         jLabel35 = new javax.swing.JLabel();
         PanelConfig = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
-        PanelInicio = new javax.swing.JPanel();
-        ScrollBar = new javax.swing.JPanel();
         PanelClienteSelect = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -117,6 +175,8 @@ public class VtnPrincipal extends javax.swing.JFrame
         jLabel41 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTable6 = new javax.swing.JTable();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        labelFecha = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter()
@@ -131,26 +191,80 @@ public class VtnPrincipal extends javax.swing.JFrame
         Main.setBackground(new java.awt.Color(255, 255, 255));
         Main.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
 
-        jLabel2.setText("LOGO");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logo Inicio.jpg"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         jLabel3.setBackground(new java.awt.Color(0, 51, 204));
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel3.setForeground(new java.awt.Color(47, 113, 178));
         jLabel3.setText("NETCONTROL");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
-        jLabel4.setText("LOGO");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/service.jpg"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel4MouseClicked(evt);
+            }
+        });
 
-        jLabel5.setText("LOGO");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/antena.jpg"))); // NOI18N
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
-        jLabel6.setText("LOGO");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/sucursales.jpg"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
-        jLabel7.setText("LOGO");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/cliente.jpg"))); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
-        jLabel8.setText("LOGO");
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/torres.jpg"))); // NOI18N
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel8MouseClicked(evt);
+            }
+        });
 
-        jLabel9.setText("LOGO");
-
-        jLabel10.setText("LOGO");
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/soporte.jpg"))); // NOI18N
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("SERVICIOS");
@@ -179,16 +293,6 @@ public class VtnPrincipal extends javax.swing.JFrame
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
                 jLabel13MouseClicked(evt);
-            }
-        });
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel14.setText("CONFIGURACIÓN");
-        jLabel14.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel14MouseClicked(evt);
             }
         });
 
@@ -222,7 +326,14 @@ public class VtnPrincipal extends javax.swing.JFrame
             }
         });
 
-        jLabel18.setText("LOGO");
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/salir.jpg"))); // NOI18N
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel18MouseClicked(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel19.setText("SALIR");
@@ -247,10 +358,6 @@ public class VtnPrincipal extends javax.swing.JFrame
                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(MainLayout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(MainLayout.createSequentialGroup()
                             .addComponent(jLabel9)
                             .addGap(18, 18, 18)
                             .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,21 +370,24 @@ public class VtnPrincipal extends javax.swing.JFrame
                             .addGap(18, 18, 18)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(MainLayout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(MainLayout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addGap(18, 18, 18)
                             .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(MainLayout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addGap(18, 18, 18)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(MainLayout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(30, 30, 30)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(MainLayout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
+                                .addGroup(MainLayout.createSequentialGroup()
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         MainLayout.setVerticalGroup(
@@ -285,12 +395,14 @@ public class VtnPrincipal extends javax.swing.JFrame
             .addGroup(MainLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(MainLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,11 +423,7 @@ public class VtnPrincipal extends javax.swing.JFrame
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -332,122 +440,275 @@ public class VtnPrincipal extends javax.swing.JFrame
         jLabel20.setText("EMPRESA");
         Conteiner.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel21.setText("FECHA DEL SISTEMA");
-        Conteiner.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, -1, -1));
+        label.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label.setText("FECHA:");
+        Conteiner.add(label, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, -1, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         Conteiner.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 72, 896, 40));
 
+        PanelInicio.setBackground(new java.awt.Color(255, 255, 255));
+
+        ScrollBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
+
+        javax.swing.GroupLayout ScrollBarLayout = new javax.swing.GroupLayout(ScrollBar);
+        ScrollBar.setLayout(ScrollBarLayout);
+        ScrollBarLayout.setHorizontalGroup(
+            ScrollBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblPublicidad, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
+        );
+        ScrollBarLayout.setVerticalGroup(
+            ScrollBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblPublicidad, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout PanelInicioLayout = new javax.swing.GroupLayout(PanelInicio);
+        PanelInicio.setLayout(PanelInicioLayout);
+        PanelInicioLayout.setHorizontalGroup(
+            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInicioLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(ScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+        PanelInicioLayout.setVerticalGroup(
+            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInicioLayout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(ScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(144, Short.MAX_VALUE))
+        );
+
+        Container.addTab("tab8", PanelInicio);
+
         PanelServicios.setBackground(new java.awt.Color(255, 255, 255));
         PanelServicios.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Estatus.setBackground(new java.awt.Color(0, 102, 204));
+        Estatus.setBackground(new java.awt.Color(255, 255, 255));
         Estatus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        Estatus.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                EstatusMouseClicked(evt);
+            }
+        });
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setForeground(new java.awt.Color(0, 102, 204));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Revisar Estatus");
+        jLabel25.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel25MouseClicked(evt);
+            }
+        });
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/review.jpg"))); // NOI18N
+        jLabel21.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel21MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout EstatusLayout = new javax.swing.GroupLayout(Estatus);
         Estatus.setLayout(EstatusLayout);
         EstatusLayout.setHorizontalGroup(
             EstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstatusLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(40, 40, 40))
         );
         EstatusLayout.setVerticalGroup(
             EstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstatusLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(EstatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EstatusLayout.createSequentialGroup()
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)))
+                .addGap(23, 23, 23))
         );
 
         PanelServicios.add(Estatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 136, -1, -1));
 
-        Pago.setBackground(new java.awt.Color(0, 102, 204));
+        Pago.setBackground(new java.awt.Color(255, 255, 255));
         Pago.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        Pago.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                PagoMouseClicked(evt);
+            }
+        });
 
         jLabel23.setBackground(new java.awt.Color(255, 255, 255));
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel23.setForeground(new java.awt.Color(0, 102, 204));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel23.setText("Agregar Pago");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel23MouseClicked(evt);
+            }
+        });
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/pay.jpg"))); // NOI18N
+        jLabel42.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel42MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout PagoLayout = new javax.swing.GroupLayout(Pago);
         Pago.setLayout(PagoLayout);
         PagoLayout.setHorizontalGroup(
             PagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PagoLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(45, 45, 45))
         );
         PagoLayout.setVerticalGroup(
             PagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PagoLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(PagoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel42, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PagoLayout.createSequentialGroup()
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addGap(23, 23, 23))
         );
 
         PanelServicios.add(Pago, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 136, -1, -1));
 
-        Consumo.setBackground(new java.awt.Color(0, 102, 204));
+        Consumo.setBackground(new java.awt.Color(255, 255, 255));
         Consumo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        Consumo.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                ConsumoMouseClicked(evt);
+            }
+        });
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setForeground(new java.awt.Color(0, 102, 204));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Revisar Consumo");
+        jLabel26.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel26MouseClicked(evt);
+            }
+        });
+
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/status.jpg"))); // NOI18N
+        jLabel43.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel43MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ConsumoLayout = new javax.swing.GroupLayout(Consumo);
         Consumo.setLayout(ConsumoLayout);
         ConsumoLayout.setHorizontalGroup(
             ConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConsumoLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(44, 44, 44))
         );
         ConsumoLayout.setVerticalGroup(
             ConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConsumoLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(ConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel43, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ConsumoLayout.createSequentialGroup()
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)))
+                .addGap(23, 23, 23))
         );
 
         PanelServicios.add(Consumo, new org.netbeans.lib.awtextra.AbsoluteConstraints(489, 300, -1, -1));
 
-        Imprimir.setBackground(new java.awt.Color(0, 102, 204));
+        Imprimir.setBackground(new java.awt.Color(255, 255, 255));
         Imprimir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204), 2));
+        Imprimir.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                ImprimirMouseClicked(evt);
+            }
+        });
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setForeground(new java.awt.Color(0, 102, 204));
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("Imprimir Comprobante");
+        jLabel24.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel24MouseClicked(evt);
+            }
+        });
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/print.jpg"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ImprimirLayout = new javax.swing.GroupLayout(Imprimir);
         Imprimir.setLayout(ImprimirLayout);
         ImprimirLayout.setHorizontalGroup(
             ImprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ImprimirLayout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(50, 50, 50))
         );
         ImprimirLayout.setVerticalGroup(
             ImprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ImprimirLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGroup(ImprimirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ImprimirLayout.createSequentialGroup()
+                        .addContainerGap(27, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ImprimirLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(23, 23, 23))
         );
 
         PanelServicios.add(Imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 300, -1, -1));
@@ -500,7 +761,7 @@ public class VtnPrincipal extends javax.swing.JFrame
         PanelTorres.setBackground(new java.awt.Color(255, 255, 255));
         PanelTorres.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaTorres.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
                 {null, null, null, null, null},
@@ -510,10 +771,10 @@ public class VtnPrincipal extends javax.swing.JFrame
             },
             new String []
             {
-                "No. Control", "Etiqueta", "Zona", "Dirección", "Antenas Dependientes"
+                "No. Control", "Etiqueta", "Zona", "Dirección", "Sucursal"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tablaTorres);
 
         PanelTorres.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 98, 799, -1));
 
@@ -521,43 +782,38 @@ public class VtnPrincipal extends javax.swing.JFrame
         jLabel28.setText("Torres");
         PanelTorres.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jButton19.setBackground(new java.awt.Color(204, 0, 51));
+        jButton19.setBackground(new java.awt.Color(0, 102, 204));
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton19.setForeground(new java.awt.Color(255, 255, 255));
-        jButton19.setText("Eliminar");
+        jButton19.setText("Administrar");
+        jButton19.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton19ActionPerformed(evt);
+            }
+        });
         PanelTorres.add(jButton19, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
-
-        jButton20.setBackground(new java.awt.Color(0, 102, 204));
-        jButton20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton20.setForeground(new java.awt.Color(255, 255, 255));
-        jButton20.setText("Editar");
-        PanelTorres.add(jButton20, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 200, -1));
-
-        jButton21.setBackground(new java.awt.Color(0, 102, 204));
-        jButton21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton21.setForeground(new java.awt.Color(255, 255, 255));
-        jButton21.setText("Agregar");
-        PanelTorres.add(jButton21, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
 
         Container.addTab("tab3", PanelTorres);
 
         PanelAntenas.setBackground(new java.awt.Color(255, 255, 255));
         PanelAntenas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tablaAntenas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String []
             {
-                "IP", "Frecuencia", "Modelo", "Categoría"
+                "NoControl", "Categoría", "Frecuencia", "Modelo", "Torre"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tablaAntenas);
 
         PanelAntenas.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 98, 799, -1));
 
@@ -565,30 +821,42 @@ public class VtnPrincipal extends javax.swing.JFrame
         jLabel29.setText("Antenas");
         PanelAntenas.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
-        jButton16.setBackground(new java.awt.Color(204, 0, 51));
+        jButton16.setBackground(new java.awt.Color(0, 102, 204));
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton16.setForeground(new java.awt.Color(255, 255, 255));
-        jButton16.setText("Eliminar");
+        jButton16.setText("Administrar");
+        jButton16.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton16ActionPerformed(evt);
+            }
+        });
         PanelAntenas.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
-
-        jButton17.setBackground(new java.awt.Color(0, 102, 204));
-        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton17.setForeground(new java.awt.Color(255, 255, 255));
-        jButton17.setText("Editar");
-        PanelAntenas.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 200, -1));
-
-        jButton18.setBackground(new java.awt.Color(0, 102, 204));
-        jButton18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton18.setForeground(new java.awt.Color(255, 255, 255));
-        jButton18.setText("Agregar");
-        PanelAntenas.add(jButton18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
 
         Container.addTab("tab4", PanelAntenas);
 
         PanelClientes.setBackground(new java.awt.Color(255, 255, 255));
         PanelClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel30.setText("Clientes");
+        PanelClientes.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
+
+        jButton13.setBackground(new java.awt.Color(0, 102, 204));
+        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("Administrar");
+        jButton13.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        PanelClientes.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
+
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
                 {null, null, null, null, null, null, null, null},
@@ -598,34 +866,12 @@ public class VtnPrincipal extends javax.swing.JFrame
             },
             new String []
             {
-                "Nombre", "IP", "Fecha de Instalación", "Domicilio", "Zona (Torre)", "Plan (Megas)", "Importe por Pagos", "Estatus de Pago"
+                "ID", "Nombre", "IP", "Fecha de Instalación", "Domicilio", "Estatus", "Sucursal", "Torre"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tablaClientes);
 
-        PanelClientes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 98, 799, -1));
-
-        jLabel30.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel30.setText("Clientes");
-        PanelClientes.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
-
-        jButton13.setBackground(new java.awt.Color(204, 0, 51));
-        jButton13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton13.setForeground(new java.awt.Color(255, 255, 255));
-        jButton13.setText("Eliminar");
-        PanelClientes.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 200, -1));
-
-        jButton14.setBackground(new java.awt.Color(0, 102, 204));
-        jButton14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton14.setForeground(new java.awt.Color(255, 255, 255));
-        jButton14.setText("Editar");
-        PanelClientes.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 200, -1));
-
-        jButton15.setBackground(new java.awt.Color(0, 102, 204));
-        jButton15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(255, 255, 255));
-        jButton15.setText("Agregar");
-        PanelClientes.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 200, -1));
+        PanelClientes.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 800, 430));
 
         Container.addTab("tab5", PanelClientes);
 
@@ -752,49 +998,15 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         jLabel36.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel36.setText("Configuración");
-        PanelConfig.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
+        PanelConfig.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 148, -1));
 
         Container.addTab("tab7", PanelConfig);
-
-        PanelInicio.setBackground(new java.awt.Color(255, 255, 255));
-
-        ScrollBar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 51, 204)));
-
-        javax.swing.GroupLayout ScrollBarLayout = new javax.swing.GroupLayout(ScrollBar);
-        ScrollBar.setLayout(ScrollBarLayout);
-        ScrollBarLayout.setHorizontalGroup(
-            ScrollBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-        );
-        ScrollBarLayout.setVerticalGroup(
-            ScrollBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 341, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout PanelInicioLayout = new javax.swing.GroupLayout(PanelInicio);
-        PanelInicio.setLayout(PanelInicioLayout);
-        PanelInicioLayout.setHorizontalGroup(
-            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInicioLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(ScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        PanelInicioLayout.setVerticalGroup(
-            PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInicioLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(ScrollBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(201, Short.MAX_VALUE))
-        );
-
-        Container.addTab("tab8", PanelInicio);
 
         PanelClienteSelect.setBackground(new java.awt.Color(255, 255, 255));
         PanelClienteSelect.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
-        jLabel37.setText("Nombre Cliente");
+        jLabel37.setText("Cliente:");
         PanelClienteSelect.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 6, 148, -1));
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
@@ -849,13 +1061,21 @@ public class VtnPrincipal extends javax.swing.JFrame
 
         PanelClienteSelect.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 800, 70));
 
+        PanelClienteSelect.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 690, -1));
+
         Container.addTab("tab9", PanelClienteSelect);
 
         Conteiner.add(Container, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 68, 890, 630));
 
+        labelFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        labelFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFecha.setText("dd/mm/yyyy");
+        Conteiner.add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 50, -1, -1));
+
         getContentPane().add(Conteiner, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, 900, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel17MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel17MouseClicked
@@ -872,7 +1092,13 @@ public class VtnPrincipal extends javax.swing.JFrame
     private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
     {//GEN-HEADEREND:event_formWindowOpened
         Sucursales s = new Sucursales();
-        s.consultaGeneralSucursales(tablaSucursales);
+        s.consultaGeneralSucursalesContador(tablaSucursales);
+        Clientes c = new Clientes();
+        c.consultaGeneralClientes(tablaClientes);
+        Antenas a = new Antenas();
+        a.consultaGeneralAntenas(tablaAntenas);
+        Torres t = new Torres();
+        t.consultaGeneralTorres(tablaTorres);
     }//GEN-LAST:event_formWindowOpened
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel11MouseClicked
@@ -900,11 +1126,6 @@ public class VtnPrincipal extends javax.swing.JFrame
         Container.setSelectedComponent(PanelSoporte);
     }//GEN-LAST:event_jLabel15MouseClicked
 
-    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel14MouseClicked
-    {//GEN-HEADEREND:event_jLabel14MouseClicked
-        Container.setSelectedComponent(PanelConfig);
-    }//GEN-LAST:event_jLabel14MouseClicked
-
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel19MouseClicked
     {//GEN-HEADEREND:event_jLabel19MouseClicked
         int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas salir del sistema?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
@@ -912,9 +1133,154 @@ public class VtnPrincipal extends javax.swing.JFrame
         if (confirmacion == JOptionPane.YES_OPTION)
         {
             JOptionPane.showMessageDialog(this, "Gracias por usar el sistema. ¡Hasta luego!", "Despedida", JOptionPane.INFORMATION_MESSAGE);
+            Login l = new Login();
+            l.setVisible(true);
             dispose(); // Cerrar la ventana
         }
     }//GEN-LAST:event_jLabel19MouseClicked
+
+    private void PagoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_PagoMouseClicked
+    {//GEN-HEADEREND:event_PagoMouseClicked
+        Pay p = new Pay();
+        p.setVisible(true);
+    }//GEN-LAST:event_PagoMouseClicked
+
+    private void EstatusMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_EstatusMouseClicked
+    {//GEN-HEADEREND:event_EstatusMouseClicked
+        Review R = new Review();
+        R.setVisible(true);
+    }//GEN-LAST:event_EstatusMouseClicked
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton13ActionPerformed
+    {//GEN-HEADEREND:event_jButton13ActionPerformed
+        CrudClientes cc = new CrudClientes();
+        cc.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel4MouseClicked
+    {//GEN-HEADEREND:event_jLabel4MouseClicked
+        Container.setSelectedComponent(PanelServicios);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel6MouseClicked
+    {//GEN-HEADEREND:event_jLabel6MouseClicked
+        Container.setSelectedComponent(PanelSucursales);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel8MouseClicked
+    {//GEN-HEADEREND:event_jLabel8MouseClicked
+        Container.setSelectedComponent(PanelTorres);
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel5MouseClicked
+    {//GEN-HEADEREND:event_jLabel5MouseClicked
+        Container.setSelectedComponent(PanelAntenas);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel7MouseClicked
+    {//GEN-HEADEREND:event_jLabel7MouseClicked
+        Container.setSelectedComponent(PanelClientes);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel9MouseClicked
+    {//GEN-HEADEREND:event_jLabel9MouseClicked
+        Container.setSelectedComponent(PanelSoporte);
+    }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel18MouseClicked
+    {//GEN-HEADEREND:event_jLabel18MouseClicked
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de que deseas salir del sistema?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
+
+        if (confirmacion == JOptionPane.YES_OPTION)
+        {
+            JOptionPane.showMessageDialog(this, "Gracias por usar el sistema. ¡Hasta luego!", "Despedida", JOptionPane.INFORMATION_MESSAGE);
+            Login l = new Login();
+            l.setVisible(true);
+            dispose(); // Cerrar la ventana
+        }
+    }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel3MouseClicked
+    {//GEN-HEADEREND:event_jLabel3MouseClicked
+        Container.setSelectedComponent(PanelInicio);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel2MouseClicked
+    {//GEN-HEADEREND:event_jLabel2MouseClicked
+        Container.setSelectedComponent(PanelInicio);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton19ActionPerformed
+    {//GEN-HEADEREND:event_jButton19ActionPerformed
+        CrudTorres ct = new CrudTorres();
+        ct.setVisible(true);
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton16ActionPerformed
+    {//GEN-HEADEREND:event_jButton16ActionPerformed
+        CrudAntenas ca = new CrudAntenas();
+        ca.setVisible(true); 
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel25MouseClicked
+    {//GEN-HEADEREND:event_jLabel25MouseClicked
+        Review R = new Review();
+        R.setVisible(true);
+    }//GEN-LAST:event_jLabel25MouseClicked
+
+    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel21MouseClicked
+    {//GEN-HEADEREND:event_jLabel21MouseClicked
+        Review R = new Review();
+        R.setVisible(true);
+    }//GEN-LAST:event_jLabel21MouseClicked
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel23MouseClicked
+    {//GEN-HEADEREND:event_jLabel23MouseClicked
+        Pay p = new Pay();
+        p.setVisible(true);
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void jLabel42MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel42MouseClicked
+    {//GEN-HEADEREND:event_jLabel42MouseClicked
+        Pay p = new Pay();
+        p.setVisible(true);
+    }//GEN-LAST:event_jLabel42MouseClicked
+
+    private void ImprimirMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_ImprimirMouseClicked
+    {//GEN-HEADEREND:event_ImprimirMouseClicked
+        Print p = new Print();
+        p.setVisible(true);
+    }//GEN-LAST:event_ImprimirMouseClicked
+
+    private void jLabel24MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel24MouseClicked
+    {//GEN-HEADEREND:event_jLabel24MouseClicked
+        Print p = new Print();
+        p.setVisible(true);
+    }//GEN-LAST:event_jLabel24MouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel1MouseClicked
+    {//GEN-HEADEREND:event_jLabel1MouseClicked
+        Print p = new Print();
+        p.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void ConsumoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_ConsumoMouseClicked
+    {//GEN-HEADEREND:event_ConsumoMouseClicked
+        Consumo c = new Consumo();
+        c.setVisible(true);
+    }//GEN-LAST:event_ConsumoMouseClicked
+
+    private void jLabel26MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel26MouseClicked
+    {//GEN-HEADEREND:event_jLabel26MouseClicked
+        Consumo c = new Consumo();
+        c.setVisible(true);
+    }//GEN-LAST:event_jLabel26MouseClicked
+
+    private void jLabel43MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel43MouseClicked
+    {//GEN-HEADEREND:event_jLabel43MouseClicked
+        Consumo c = new Consumo();
+        c.setVisible(true);
+    }//GEN-LAST:event_jLabel43MouseClicked
 
     /**
      * @param args the command line arguments
@@ -923,9 +1289,6 @@ public class VtnPrincipal extends javax.swing.JFrame
     {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try
         {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
@@ -949,7 +1312,6 @@ public class VtnPrincipal extends javax.swing.JFrame
         {
             java.util.logging.Logger.getLogger(VtnPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -985,21 +1347,15 @@ public class VtnPrincipal extends javax.swing.JFrame
     private javax.swing.JPanel PanelTorres;
     private javax.swing.JPanel ScrollBar;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
-    private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -1030,6 +1386,8 @@ public class VtnPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1042,11 +1400,14 @@ public class VtnPrincipal extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JLabel label;
+    private javax.swing.JLabel labelFecha;
+    private javax.swing.JLabel lblPublicidad;
+    private javax.swing.JTable tablaAntenas;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tablaSucursales;
+    private javax.swing.JTable tablaTorres;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,11 +4,21 @@
  */
 package Views;
 
+import Files.Fecha;
+import Files.Pagos;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Basilio
  */
-public class Print extends javax.swing.JFrame
+public class Print extends javax.swing.JFrame implements Printable
 {
 
     /**
@@ -30,27 +40,207 @@ public class Print extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        labelFecha = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        labelPago = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        labelCliente = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        labelMes = new javax.swing.JLabel();
+        comboPagosNC = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        labelImporte = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 102, 204), 3, true));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logoFactura.jpg"))); // NOI18N
+        jLabel1.setText("LOGO");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 100, 90));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(47, 113, 178));
+        jLabel2.setText("NETCONTROL");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+
+        jLabel3.setText("ALYGRAPE SOLUTIONS S.A DE C.V ");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 290, -1));
+
+        jLabel4.setText("FECHA:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 70, -1));
+
+        jLabel5.setText("NO. CONTROL: ");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+
+        labelFecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelFecha.setText("dd/mm/yyyy");
+        jPanel1.add(labelFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 90, -1));
+
+        jLabel7.setText("CLIENTE:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("$");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 290, 20, -1));
+
+        jLabel10.setText("MES APLICADO:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
+
+        labelPago.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelPago.setText("Tipo (Efectivo/Tarjeta)");
+        jPanel1.add(labelPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 180, -1));
+
+        jLabel12.setText("TIPO DE PAGO:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+
+        labelCliente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelCliente.setText("Nombre");
+        jPanel1.add(labelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 180, -1));
+
+        jLabel14.setText("IMPORTE:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+
+        jLabel16.setText("FACTURA EMITIDA POR:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, -1, -1));
+
+        jLabel17.setText("ALYGRAPE SOLUTIONS S.A DE C.V");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, -1, -1));
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/logoAligrape.jpg"))); // NOI18N
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 150, 140));
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("SELLO DE LA SUCURSAL");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, 280, 20));
+
+        jButton1.setBackground(new java.awt.Color(0, 102, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("IMPRIMIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 460, 90, 30));
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setText("NÚMERO DE CONTROL DE SU PAGO");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 280, -1));
+
+        labelMes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelMes.setText("Enero");
+        jPanel1.add(labelMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 70, -1));
+
+        comboPagosNC.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        comboPagosNC.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboPagosNCItemStateChanged(evt);
+            }
+        });
+        comboPagosNC.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comboPagosNCActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboPagosNC, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 170, -1));
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/exit.jpg"))); // NOI18N
+        jLabel21.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel21MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, -1, -1));
+
+        labelImporte.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        labelImporte.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelImporte.setText("0.00");
+        jPanel1.add(labelImporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 80, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        PrinterJob job = PrinterJob.getPrinterJob();
+        job.setPrintable(this);
+        if(job.printDialog())
+        {
+            try
+            {
+                job.print();
+            } catch (Exception e)
+            {
+                
+            }
+        }else
+        {
+            JOptionPane.showMessageDialog(null, "La impresión no pudo generarse");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Fecha f = new Fecha();
+        f.mostrarFechaEnCampo(labelFecha);
+        Pagos p = new Pagos();
+        p.agregaCombo(comboPagosNC);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel21MouseClicked
+    {//GEN-HEADEREND:event_jLabel21MouseClicked
+        this.dispose();
+    }//GEN-LAST:event_jLabel21MouseClicked
+
+    private void comboPagosNCActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboPagosNCActionPerformed
+    {//GEN-HEADEREND:event_comboPagosNCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPagosNCActionPerformed
+
+    private void comboPagosNCItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboPagosNCItemStateChanged
+    {//GEN-HEADEREND:event_comboPagosNCItemStateChanged
+        Pagos p = new Pagos();
+        p.selecPago(comboPagosNC, labelCliente, labelPago, labelMes, labelImporte, labelFecha);
+    }//GEN-LAST:event_comboPagosNCItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -98,6 +288,44 @@ public class Print extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboPagosNC;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelCliente;
+    private javax.swing.JLabel labelFecha;
+    private javax.swing.JLabel labelImporte;
+    private javax.swing.JLabel labelMes;
+    private javax.swing.JLabel labelPago;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException
+    {
+        if (pageIndex == 0)
+        {
+            Graphics2D graphics2D = (Graphics2D) graphics;
+            graphics2D.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+            printAll(graphics2D);
+            return PAGE_EXISTS;
+        } else
+        {
+            return NO_SUCH_PAGE;
+        }
+    }
 }

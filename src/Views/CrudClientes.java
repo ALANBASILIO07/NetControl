@@ -4,6 +4,13 @@
  */
 package Views;
 
+import Files.Clientes;
+import Files.Fecha;
+import Files.Sucursales;
+import Files.Torres;
+import cjb.ci.Validaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Basilio
@@ -32,111 +39,354 @@ public class CrudClientes extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        IPCliente = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        nombreCliente = new javax.swing.JTextField();
+        domicilioCliente = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        comboSucursalCliente = new javax.swing.JComboBox<>();
+        comboTorreCliente = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaClienteTorre = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaSucursalCliente = new javax.swing.JTable();
+        fechaInstalacion = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        comboModifTorre = new javax.swing.JComboBox<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tablaModifSucursal = new javax.swing.JTable();
+        comboModifSucursal = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        modifIP = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        modifNombre = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        comboClientes = new javax.swing.JComboBox<>();
+        modifDomicilio = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaTorreCliente = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        comboEliminaCliente = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tablaEliminaCliente = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTabbedPane1.setBackground(new java.awt.Color(0, 102, 204));
+        jTabbedPane1.setBackground(new java.awt.Color(47, 113, 178));
         jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Guardar");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 345, -1, -1));
-
-        jLabel9.setText("Agregue los datos de la sucursal");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, -1, -1));
+        jLabel9.setText("Agregue los datos del cliente");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
 
         jLabel10.setText("Nombre");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
-        jLabel11.setText("Gerente");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
-        jPanel2.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 310, -1));
+        jLabel11.setText("IP");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
-        jLabel12.setText("Dirección");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
-        jPanel2.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 310, -1));
+        IPCliente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                IPClienteKeyTyped(evt);
+            }
+        });
+        jPanel2.add(IPCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 180, -1));
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener()
+        jLabel12.setText("Sucursal a la que pertenece");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+
+        nombreCliente.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jTextField9ActionPerformed(evt);
+                nombreClienteActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 310, -1));
+        nombreCliente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                nombreClienteKeyTyped(evt);
+            }
+        });
+        jPanel2.add(nombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 180, -1));
+
+        domicilioCliente.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                domicilioClienteActionPerformed(evt);
+            }
+        });
+        domicilioCliente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                domicilioClienteKeyTyped(evt);
+            }
+        });
+        jPanel2.add(domicilioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, 180, -1));
+
+        jLabel13.setText("Torre a la que pertenece");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+
+        jLabel14.setText("Fecha de instalación");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, -1, -1));
+
+        jLabel15.setText("Domicilio");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 90, -1, -1));
+
+        comboSucursalCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        comboSucursalCliente.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboSucursalClienteItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(comboSucursalCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 110, -1));
+
+        comboTorreCliente.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboTorreClienteItemStateChanged(evt);
+            }
+        });
+        jPanel2.add(comboTorreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 110, -1));
+
+        tablaClienteTorre.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String []
+            {
+                "No. Control", "Etiqueta", "Zona", "Dirección"
+            }
+        ));
+        jScrollPane2.setViewportView(tablaClienteTorre);
+
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 590, 50));
+
+        tablaSucursalCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String []
+            {
+                "Nombre", "Gerente", "Dirección"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaSucursalCliente);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 590, 50));
+
+        fechaInstalacion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        fechaInstalacion.setText("dd/mm/yyyy");
+        jPanel2.add(fechaInstalacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 150, 180, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 102, 204));
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 400, -1, -1));
 
         jTabbedPane1.addTab("Agregar Cliente", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setText("Nombre");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, -1, -1));
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener()
+        jButton2.setBackground(new java.awt.Color(0, 102, 204));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("MODIFICAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jTextField4ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 120, 310, -1));
-
-        jLabel5.setText("Gerente");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, -1, -1));
-
-        jLabel6.setText("Dirección");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
-
-        jButton2.setText("Modificar");
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(362, 345, -1, -1));
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, 310, -1));
-        jPanel3.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 310, -1));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, -1, -1));
 
         jLabel8.setText("Modifique los datos de los campos que desea actualizar");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+
+        jLabel16.setText("Torre a la que pertenece");
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+
+        comboModifTorre.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboModifTorreItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(comboModifTorre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 110, -1));
+
+        tablaModifSucursal.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String []
+            {
+                "Nombre", "Gerente", "Dirección"
+            }
+        ));
+        jScrollPane5.setViewportView(tablaModifSucursal);
+
+        jPanel3.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 590, 50));
+
+        comboModifSucursal.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboModifSucursalItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(comboModifSucursal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, 110, -1));
+
+        jLabel17.setText("Sucursal a la que pertenece");
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
+
+        modifIP.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifIPKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifIP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 180, -1));
+
+        jLabel18.setText("IP");
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, -1, -1));
+
+        jLabel19.setText("Nombre");
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+
+        modifNombre.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                modifNombreActionPerformed(evt);
+            }
+        });
+        modifNombre.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifNombreKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modifNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 180, -1));
+
+        jLabel20.setText("Domicilio");
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
+
+        jLabel1.setText("ClLIENTE:");
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, -1, -1));
+
+        comboClientes.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboClientesItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(comboClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 500, -1));
+        jPanel3.add(modifDomicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 170, -1));
+
+        tablaTorreCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][]
+            {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String []
+            {
+                "No. Control", "Zona", "Dirección", "Etiqueta", "Sucursal"
+            }
+        ));
+        jScrollPane3.setViewportView(tablaTorreCliente);
+
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 590, 50));
 
         jTabbedPane1.addTab("Modificar Cliente", jPanel3);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-
-        jButton3.setText("Eliminar");
+        comboEliminaCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        comboEliminaCliente.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboEliminaClienteItemStateChanged(evt);
+            }
+        });
+        jPanel4.add(comboEliminaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 99, 225, -1));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Selecione el cliente que desea eliminar");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(229, 65, 225, -1));
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEliminaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][]
             {
                 {null, null, null, null, null, null, null, null},
@@ -146,62 +396,218 @@ public class CrudClientes extends javax.swing.JFrame
             },
             new String []
             {
-                "Nombre", "IP", "Fecha de Instalación", "Domicilio", "Zona (Torre)", "Plan (Megas)", "Importe por Pagos", "Estatus de Pago"
+                "ID", "Nombre", "IP", "Fecha de Instalación", "Domicilio", "Estatus", "Sucursal", "Torre"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tablaEliminaCliente);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(304, 304, 304)
-                        .addComponent(jButton3)))
-                .addContainerGap(122, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jButton3)
-                .addContainerGap(116, Short.MAX_VALUE))
-        );
+        jPanel4.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 177, 668, 110));
+
+        jButton3.setBackground(new java.awt.Color(0, 102, 204));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(304, 326, -1, -1));
 
         jTabbedPane1.addTab("Eliminar Cliente", jPanel4);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField9ActionPerformed
-    {//GEN-HEADEREND:event_jTextField9ActionPerformed
+    private void nombreClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_nombreClienteActionPerformed
+    {//GEN-HEADEREND:event_nombreClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_nombreClienteActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField4ActionPerformed
-    {//GEN-HEADEREND:event_jTextField4ActionPerformed
+    private void domicilioClienteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_domicilioClienteActionPerformed
+    {//GEN-HEADEREND:event_domicilioClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_domicilioClienteActionPerformed
+
+    private void modifNombreActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifNombreActionPerformed
+    {//GEN-HEADEREND:event_modifNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modifNombreActionPerformed
+
+    private void nombreClienteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nombreClienteKeyTyped
+    {//GEN-HEADEREND:event_nombreClienteKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, nombreCliente.getText());
+    }//GEN-LAST:event_nombreClienteKeyTyped
+
+    private void IPClienteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_IPClienteKeyTyped
+    {//GEN-HEADEREND:event_IPClienteKeyTyped
+        Validaciones.validaFlotantes(evt, 23, IPCliente.getText());
+    }//GEN-LAST:event_IPClienteKeyTyped
+
+    private void domicilioClienteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_domicilioClienteKeyTyped
+    {//GEN-HEADEREND:event_domicilioClienteKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, domicilioCliente.getText());
+    }//GEN-LAST:event_domicilioClienteKeyTyped
+
+    private void modifNombreKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifNombreKeyTyped
+    {//GEN-HEADEREND:event_modifNombreKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, nombreCliente.getText());
+    }//GEN-LAST:event_modifNombreKeyTyped
+
+    private void modifIPKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifIPKeyTyped
+    {//GEN-HEADEREND:event_modifIPKeyTyped
+        Validaciones.validaFlotantes(evt, 23, IPCliente.getText());
+    }//GEN-LAST:event_modifIPKeyTyped
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTabbedPane1MouseClicked
+    {//GEN-HEADEREND:event_jTabbedPane1MouseClicked
+
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Fecha f = new Fecha();
+        f.mostrarFechaEnCampo(fechaInstalacion);
+        Clientes c = new Clientes();
+        c.agregaCombo(comboClientes);
+        c.agregaCombo(comboEliminaCliente);
+        c.agregaComboSucursal(comboSucursalCliente);
+        c.agregaComboSucursal(comboModifSucursal);
+        c.agregaComboTorre(comboTorreCliente);
+        c.agregaComboTorre(comboModifTorre);
+        c.consultaGeneralClientes(tablaEliminaCliente);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        // Validar que los campos no estén vacíos antes de dar de alta el cliente
+        if (nombreCliente.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el nombre del cliente", "Alerta", JOptionPane.WARNING_MESSAGE);
+            nombreCliente.requestFocus();
+        } else if (IPCliente.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la IP del cliente", "Alerta", JOptionPane.WARNING_MESSAGE);
+            IPCliente.requestFocus();
+        } else if (fechaInstalacion.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la fecha de instalación", "Alerta", JOptionPane.WARNING_MESSAGE);
+            fechaInstalacion.requestFocus();
+        } else if (domicilioCliente.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el domicilio del cliente", "Alerta", JOptionPane.WARNING_MESSAGE);
+            domicilioCliente.requestFocus();
+        } else if (comboSucursalCliente.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la sucursal", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboSucursalCliente.requestFocus();
+        } else if (comboTorreCliente.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboTorreCliente.requestFocus();
+        } else
+        {
+            // Crear instancia de la clase Clientes y dar de alta al cliente
+            Clientes c = new Clientes();
+            c.altaCliente(nombreCliente, IPCliente, fechaInstalacion, domicilioCliente, comboSucursalCliente, comboTorreCliente);
+            c.agregaCombo(comboClientes);
+            c.agregaCombo(comboEliminaCliente);
+
+            // Limpiar los campos después de dar de alta el cliente
+            nombreCliente.setText("");
+            IPCliente.setText("");
+            domicilioCliente.setText("");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comboClientesItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboClientesItemStateChanged
+    {//GEN-HEADEREND:event_comboClientesItemStateChanged
+        Clientes c = new Clientes();
+        c.selectCliente(comboClientes, modifNombre, modifIP, modifDomicilio, comboModifSucursal, comboModifTorre);
+    }//GEN-LAST:event_comboClientesItemStateChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        // Validar que los campos no estén vacíos antes de modificar el cliente
+        if (modifNombre.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el nombre del cliente", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifNombre.requestFocus();
+        } else if (modifIP.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar la IP del cliente", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifIP.requestFocus();
+        } else if (modifDomicilio.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Faltó ingresar el domicilio del cliente", "Alerta", JOptionPane.WARNING_MESSAGE);
+            modifDomicilio.requestFocus();
+        } else if (comboModifSucursal.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la sucursal", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboModifSucursal.requestFocus();
+        } else if (comboModifTorre.getSelectedItem() == null)
+        {
+            JOptionPane.showMessageDialog(this, "Faltó seleccionar la torre", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboModifTorre.requestFocus();
+        } else
+        {
+            // Crear instancia de la clase Clientes y modificar el cliente
+            Clientes c = new Clientes();
+            c.modificarCliente(modifNombre, modifIP, modifDomicilio, comboModifSucursal, comboModifTorre);
+            c.agregaCombo(comboClientes);
+            c.agregaCombo(comboEliminaCliente);
+
+            // Limpiar los campos después de modificar el cliente
+            modifDomicilio.setText("");
+            modifIP.setText("");
+            modifNombre.setText("");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void comboModifSucursalItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboModifSucursalItemStateChanged
+    {//GEN-HEADEREND:event_comboModifSucursalItemStateChanged
+        Sucursales s = new Sucursales();
+        s.consultaSucursalEspecifica(tablaModifSucursal, comboModifSucursal);
+    }//GEN-LAST:event_comboModifSucursalItemStateChanged
+
+    private void comboSucursalClienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboSucursalClienteItemStateChanged
+    {//GEN-HEADEREND:event_comboSucursalClienteItemStateChanged
+        Sucursales s = new Sucursales();
+        s.consultaSucursalEspecifica(tablaSucursalCliente, comboSucursalCliente);
+    }//GEN-LAST:event_comboSucursalClienteItemStateChanged
+
+    private void comboEliminaClienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboEliminaClienteItemStateChanged
+    {//GEN-HEADEREND:event_comboEliminaClienteItemStateChanged
+        Clientes c = new Clientes();
+        c.consultaClienteEspecifico(tablaEliminaCliente, comboEliminaCliente);
+    }//GEN-LAST:event_comboEliminaClienteItemStateChanged
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
+    {//GEN-HEADEREND:event_jButton3ActionPerformed
+        Clientes c = new Clientes();
+        c.eliminarCliente(comboEliminaCliente);
+        c.agregaCombo(comboEliminaCliente);
+        c.agregaCombo(comboClientes);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void comboModifTorreItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboModifTorreItemStateChanged
+    {//GEN-HEADEREND:event_comboModifTorreItemStateChanged
+        Torres t = new Torres();
+        t.consultaTorreEspecifica(tablaTorreCliente, comboModifTorre);
+    }//GEN-LAST:event_comboModifTorreItemStateChanged
+
+    private void comboTorreClienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTorreClienteItemStateChanged
+    {//GEN-HEADEREND:event_comboTorreClienteItemStateChanged
+        Torres t = new Torres();
+        t.consultaTorreEspecifica(tablaClienteTorre, comboTorreCliente);
+    }//GEN-LAST:event_comboTorreClienteItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -249,16 +655,30 @@ public class CrudClientes extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField IPCliente;
+    private javax.swing.JComboBox<String> comboClientes;
+    private javax.swing.JComboBox<String> comboEliminaCliente;
+    private javax.swing.JComboBox<String> comboModifSucursal;
+    private javax.swing.JComboBox<String> comboModifTorre;
+    private javax.swing.JComboBox<String> comboSucursalCliente;
+    private javax.swing.JComboBox<String> comboTorreCliente;
+    private javax.swing.JTextField domicilioCliente;
+    private javax.swing.JLabel fechaInstalacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -266,14 +686,20 @@ public class CrudClientes extends javax.swing.JFrame
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable4;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField modifDomicilio;
+    private javax.swing.JTextField modifIP;
+    private javax.swing.JTextField modifNombre;
+    private javax.swing.JTextField nombreCliente;
+    private javax.swing.JTable tablaClienteTorre;
+    private javax.swing.JTable tablaEliminaCliente;
+    private javax.swing.JTable tablaModifSucursal;
+    private javax.swing.JTable tablaSucursalCliente;
+    private javax.swing.JTable tablaTorreCliente;
     // End of variables declaration//GEN-END:variables
 }
